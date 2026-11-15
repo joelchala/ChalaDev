@@ -1,0 +1,269 @@
+{
+  "extName": {
+    "message": "ChalaDev — Local Web Dev Utilities"
+  },
+  "extDescription": {
+    "message": "Fast local suite for web developers and UI/UX designers: EyeDropper, DOM typography inspector, offline JSON/Base64/JWT, QR & SEO. 100% local."
+  },
+  "actionTitle": {
+    "message": "Open ChalaDev in the side panel"
+  },
+  "badgeLocal": {
+    "message": "100% Local"
+  },
+  "tabVisual": {
+    "message": "Visual & Color"
+  },
+  "tabFormatter": {
+    "message": "JSON / JWT"
+  },
+  "tabQrSeo": {
+    "message": "QR & SEO"
+  },
+  "restrictedTitle": {
+    "message": "Internal browser page"
+  },
+  "restrictedDesc": {
+    "message": "Live page tools (DOM inspector and SEO metadata) cannot run on internal pages like chrome:// or edge://. EyeDropper, JSON/Base64/JWT tools and custom QR codes remain available."
+  },
+  "permissionHintTitle": {
+    "message": "On-demand access (activeTab)"
+  },
+  "permissionHintDesc": {
+    "message": "Click the ChalaDev toolbar icon while viewing this tab to grant temporary page inspection and metadata access."
+  },
+  "eyeDropperTitle": {
+    "message": "Screen EyeDropper"
+  },
+  "eyeDropperBtn": {
+    "message": "Pick color"
+  },
+  "eyeDropperUnsupported": {
+    "message": "EyeDropper API is not available in this browser."
+  },
+  "eyeDropperCancelled": {
+    "message": "Color picking cancelled."
+  },
+  "colorFormatHex": {
+    "message": "HEX"
+  },
+  "colorFormatRgb": {
+    "message": "RGB"
+  },
+  "colorFormatHsl": {
+    "message": "HSL"
+  },
+  "colorHistoryTitle": {
+    "message": "Recent history (last 12)"
+  },
+  "colorHistoryEmpty": {
+    "message": "No captured colors yet. Click \"Pick color\" to start."
+  },
+  "clearHistory": {
+    "message": "Clear"
+  },
+  "inspectorTitle": {
+    "message": "Typography & Box Inspector"
+  },
+  "inspectorToggleLabel": {
+    "message": "Inspect element"
+  },
+  "inspectorStopLabel": {
+    "message": "Stop inspector"
+  },
+  "inspectorHint": {
+    "message": "Enable the toggle and hover over the page. Click an element to lock selection; press Esc to exit."
+  },
+  "inspectorStateIdle": {
+    "message": "Idle"
+  },
+  "inspectorStateActive": {
+    "message": "Active (hover)"
+  },
+  "inspectorStateLocked": {
+    "message": "Locked (click to unlock)"
+  },
+  "propTag": {
+    "message": "Tag"
+  },
+  "propDimensions": {
+    "message": "Dimensions"
+  },
+  "propFontFamily": {
+    "message": "Font Family"
+  },
+  "propFontSize": {
+    "message": "Font Size"
+  },
+  "propFontWeight": {
+    "message": "Font Weight"
+  },
+  "propLineHeight": {
+    "message": "Line Height"
+  },
+  "propTextColor": {
+    "message": "Text Color"
+  },
+  "propBgColor": {
+    "message": "Background"
+  },
+  "jsonTitle": {
+    "message": "JSON Formatter / Validator"
+  },
+  "jsonPlaceholder": {
+    "message": "Paste minified or messy JSON here..."
+  },
+  "btnFormat": {
+    "message": "Format"
+  },
+  "btnMinify": {
+    "message": "Minify"
+  },
+  "btnValidate": {
+    "message": "Validate"
+  },
+  "btnCopy": {
+    "message": "Copy"
+  },
+  "btnClear": {
+    "message": "Clear"
+  },
+  "jsonValidMsg": {
+    "message": "Valid JSON ($1)"
+  },
+  "jsonEmptyError": {
+    "message": "Enter JSON content to process."
+  },
+  "jsonSyntaxError": {
+    "message": "Syntax error at line $1, column $2: $3"
+  },
+  "base64Title": {
+    "message": "Base64 Converter (UTF-8)"
+  },
+  "base64Placeholder": {
+    "message": "Plain text or Base64 string..."
+  },
+  "base64OutputPlaceholder": {
+    "message": "Result..."
+  },
+  "btnEncode": {
+    "message": "Encode"
+  },
+  "btnDecode": {
+    "message": "Decode"
+  },
+  "btnSwap": {
+    "message": "Swap"
+  },
+  "base64Error": {
+    "message": "Invalid or malformed Base64 string."
+  },
+  "jwtTitle": {
+    "message": "JWT Decoder"
+  },
+  "jwtOfflineBadge": {
+    "message": "100% offline processing"
+  },
+  "jwtPlaceholder": {
+    "message": "Paste a JWT token (header.payload.signature)..."
+  },
+  "jwtDecodeBtn": {
+    "message": "Decode JWT"
+  },
+  "jwtHeaderLabel": {
+    "message": "Header"
+  },
+  "jwtPayloadLabel": {
+    "message": "Payload"
+  },
+  "jwtSignatureLabel": {
+    "message": "Signature present (not verified offline)"
+  },
+  "jwtValidStructure": {
+    "message": "JWT structure decoded offline"
+  },
+  "jwtExpired": {
+    "message": "Expired"
+  },
+  "jwtActive": {
+    "message": "Active"
+  },
+  "jwtNoExp": {
+    "message": "No exp claim"
+  },
+  "jwtErrorInvalid": {
+    "message": "Invalid JWT token: 3 dot-separated segments required."
+  },
+  "qrTitle": {
+    "message": "Instant QR Generator"
+  },
+  "qrInputPlaceholder": {
+    "message": "Enter a URL or text (defaults to current tab)..."
+  },
+  "qrUseCurrentTab": {
+    "message": "Use current tab"
+  },
+  "qrDownloadPng": {
+    "message": "Download PNG"
+  },
+  "qrEmptyHint": {
+    "message": "Enter a URL or text to generate the QR code."
+  },
+  "qrErrorTooLong": {
+    "message": "Content exceeds maximum local QR code capacity."
+  },
+  "seoTitle": {
+    "message": "Quick Metadata (SEO & OpenGraph)"
+  },
+  "seoRefreshBtn": {
+    "message": "Refresh"
+  },
+  "seoFieldTitle": {
+    "message": "Title"
+  },
+  "seoFieldDescription": {
+    "message": "Description"
+  },
+  "seoFieldCanonical": {
+    "message": "Canonical"
+  },
+  "seoFieldOgTitle": {
+    "message": "og:title"
+  },
+  "seoFieldOgDesc": {
+    "message": "og:description"
+  },
+  "seoFieldOgType": {
+    "message": "og:type"
+  },
+  "seoFieldOgUrl": {
+    "message": "og:url"
+  },
+  "seoFieldOgImage": {
+    "message": "og:image"
+  },
+  "seoMissing": {
+    "message": "Not set"
+  },
+  "seoChars": {
+    "message": "$1 chars"
+  },
+  "copiedToast": {
+    "message": "Copied!"
+  },
+  "copyFailed": {
+    "message": "Could not copy to clipboard."
+  },
+  "paypalDonate": {
+    "message": "Donate via PayPal"
+  },
+  "githubRepo": {
+    "message": "GitHub (MIT)"
+  },
+  "suiteLabel": {
+    "message": "Chala Suite:"
+  },
+  "privacyNote": {
+    "message": "Local execution · Zero telemetry"
+  }
+}

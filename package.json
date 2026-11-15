@@ -1,0 +1,19 @@
+{
+  "name": "chaladev",
+  "version": "1.0.0",
+  "description": "Suite de utilidades web locales en el Side Panel para desarrolladores y diseñadores UI/UX (Manifest V3)",
+  "type": "module",
+  "scripts": {
+    "icons": "node scripts/generate-icons.mjs",
+    "test": "node tests/verify.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joelchala/ChalaDev.git"
+  },
+  "author": "Joel Chala",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  }
+}

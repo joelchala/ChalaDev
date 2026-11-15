@@ -1,0 +1,269 @@
+{
+  "extName": {
+    "message": "ChalaDev — Utilidades Web Locales"
+  },
+  "extDescription": {
+    "message": "Suite rápida para desarrolladores y diseñadores UI/UX: cuentagotas, inspector DOM, JSON/Base64/JWT offline, QR y SEO. 100% local."
+  },
+  "actionTitle": {
+    "message": "Abrir ChalaDev en el panel lateral"
+  },
+  "badgeLocal": {
+    "message": "100% Local"
+  },
+  "tabVisual": {
+    "message": "Visual y Color"
+  },
+  "tabFormatter": {
+    "message": "JSON / JWT"
+  },
+  "tabQrSeo": {
+    "message": "QR y SEO"
+  },
+  "restrictedTitle": {
+    "message": "Página interna del navegador"
+  },
+  "restrictedDesc": {
+    "message": "El inspector DOM y los metadatos SEO no se ejecutan en páginas internas (chrome://, edge://). El cuentagotas, JSON/Base64/JWT y el generador QR personalizado siguen activos."
+  },
+  "permissionHintTitle": {
+    "message": "Acceso bajo demanda (activeTab)"
+  },
+  "permissionHintDesc": {
+    "message": "Haz clic en el icono de ChalaDev en la barra de herramientas sobre esta pestaña para habilitar la inspección de página y metadatos."
+  },
+  "eyeDropperTitle": {
+    "message": "Cuentagotas de Pantalla"
+  },
+  "eyeDropperBtn": {
+    "message": "Capturar color"
+  },
+  "eyeDropperUnsupported": {
+    "message": "La API EyeDropper no está disponible en este navegador."
+  },
+  "eyeDropperCancelled": {
+    "message": "Captura cancelada por el usuario."
+  },
+  "colorFormatHex": {
+    "message": "HEX"
+  },
+  "colorFormatRgb": {
+    "message": "RGB"
+  },
+  "colorFormatHsl": {
+    "message": "HSL"
+  },
+  "colorHistoryTitle": {
+    "message": "Historial reciente (últimos 12)"
+  },
+  "colorHistoryEmpty": {
+    "message": "Aún no hay colores capturados. Pulsa \"Capturar color\" para empezar."
+  },
+  "clearHistory": {
+    "message": "Limpiar"
+  },
+  "inspectorTitle": {
+    "message": "Inspector de Tipografía y Caja"
+  },
+  "inspectorToggleLabel": {
+    "message": "Inspeccionar elemento"
+  },
+  "inspectorStopLabel": {
+    "message": "Detener inspector"
+  },
+  "inspectorHint": {
+    "message": "Activa el interruptor y pasa el cursor sobre la web. Haz clic en un elemento para fijarlo; pulsa Esc para salir."
+  },
+  "inspectorStateIdle": {
+    "message": "Inactivo"
+  },
+  "inspectorStateActive": {
+    "message": "Activo (hover)"
+  },
+  "inspectorStateLocked": {
+    "message": "Fijado (clic para liberar)"
+  },
+  "propTag": {
+    "message": "Etiqueta"
+  },
+  "propDimensions": {
+    "message": "Dimensiones"
+  },
+  "propFontFamily": {
+    "message": "Font Family"
+  },
+  "propFontSize": {
+    "message": "Font Size"
+  },
+  "propFontWeight": {
+    "message": "Font Weight"
+  },
+  "propLineHeight": {
+    "message": "Line Height"
+  },
+  "propTextColor": {
+    "message": "Color texto"
+  },
+  "propBgColor": {
+    "message": "Color fondo"
+  },
+  "jsonTitle": {
+    "message": "JSON Formatter / Validator"
+  },
+  "jsonPlaceholder": {
+    "message": "Pega aquí tu JSON minificado o desordenado..."
+  },
+  "btnFormat": {
+    "message": "Formatear"
+  },
+  "btnMinify": {
+    "message": "Minificar"
+  },
+  "btnValidate": {
+    "message": "Validar"
+  },
+  "btnCopy": {
+    "message": "Copiar"
+  },
+  "btnClear": {
+    "message": "Limpiar"
+  },
+  "jsonValidMsg": {
+    "message": "JSON válido ($1)"
+  },
+  "jsonEmptyError": {
+    "message": "Ingresa contenido JSON para procesar."
+  },
+  "jsonSyntaxError": {
+    "message": "Error de sintaxis en línea $1, columna $2: $3"
+  },
+  "base64Title": {
+    "message": "Conversor Base64 (UTF-8)"
+  },
+  "base64Placeholder": {
+    "message": "Texto plano o cadena Base64..."
+  },
+  "base64OutputPlaceholder": {
+    "message": "Resultado..."
+  },
+  "btnEncode": {
+    "message": "Codificar"
+  },
+  "btnDecode": {
+    "message": "Decodificar"
+  },
+  "btnSwap": {
+    "message": "Intercambiar"
+  },
+  "base64Error": {
+    "message": "Cadena Base64 inválida o mal formada."
+  },
+  "jwtTitle": {
+    "message": "Decodificador JWT"
+  },
+  "jwtOfflineBadge": {
+    "message": "Procesamiento 100% offline"
+  },
+  "jwtPlaceholder": {
+    "message": "Pega un token JWT (header.payload.signature)..."
+  },
+  "jwtDecodeBtn": {
+    "message": "Decodificar JWT"
+  },
+  "jwtHeaderLabel": {
+    "message": "Header"
+  },
+  "jwtPayloadLabel": {
+    "message": "Payload"
+  },
+  "jwtSignatureLabel": {
+    "message": "Firma presente (no verificada en servidor)"
+  },
+  "jwtValidStructure": {
+    "message": "Estructura JWT decodificada offline"
+  },
+  "jwtExpired": {
+    "message": "Expirado"
+  },
+  "jwtActive": {
+    "message": "Vigente"
+  },
+  "jwtNoExp": {
+    "message": "Sin claim exp"
+  },
+  "jwtErrorInvalid": {
+    "message": "Token JWT inválido: se requieren 3 partes separadas por punto."
+  },
+  "qrTitle": {
+    "message": "Generador QR Instantáneo"
+  },
+  "qrInputPlaceholder": {
+    "message": "Escribe una URL o texto (por defecto la pestaña actual)..."
+  },
+  "qrUseCurrentTab": {
+    "message": "Usar pestaña actual"
+  },
+  "qrDownloadPng": {
+    "message": "Descargar PNG"
+  },
+  "qrEmptyHint": {
+    "message": "Ingresa una URL o texto para generar el código QR."
+  },
+  "qrErrorTooLong": {
+    "message": "El texto excede la capacidad máxima del generador QR local."
+  },
+  "seoTitle": {
+    "message": "Metadatos Rápidos (SEO y OpenGraph)"
+  },
+  "seoRefreshBtn": {
+    "message": "Actualizar"
+  },
+  "seoFieldTitle": {
+    "message": "Título"
+  },
+  "seoFieldDescription": {
+    "message": "Description"
+  },
+  "seoFieldCanonical": {
+    "message": "Canonical"
+  },
+  "seoFieldOgTitle": {
+    "message": "og:title"
+  },
+  "seoFieldOgDesc": {
+    "message": "og:description"
+  },
+  "seoFieldOgType": {
+    "message": "og:type"
+  },
+  "seoFieldOgUrl": {
+    "message": "og:url"
+  },
+  "seoFieldOgImage": {
+    "message": "og:image"
+  },
+  "seoMissing": {
+    "message": "No definido"
+  },
+  "seoChars": {
+    "message": "$1 car."
+  },
+  "copiedToast": {
+    "message": "¡Copiado!"
+  },
+  "copyFailed": {
+    "message": "No se pudo copiar al portapapeles."
+  },
+  "paypalDonate": {
+    "message": "Donar vía PayPal"
+  },
+  "githubRepo": {
+    "message": "GitHub (MIT)"
+  },
+  "suiteLabel": {
+    "message": "Suite Chala:"
+  },
+  "privacyNote": {
+    "message": "Ejecución local · Cero telemetría"
+  }
+}
