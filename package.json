@@ -4,7 +4,8 @@
   "description": "Suite de utilidades web locales en el Side Panel para desarrolladores y diseñadores UI/UX (Manifest V3)",
   "type": "module",
   "scripts": {
-    "icons": "node scripts/generate-icons.mjs",
+    "build": "node tools/make-mv3.mjs",
+    "icons": "node tools/generate-icons.mjs",
     "test": "node tests/verify.mjs"
   },
   "repository": {
@@ -13,7 +14,11 @@
   },
   "author": "Joel Chala",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joelchala/ChalaDev/issues"
+  },
+  "homepage": "https://github.com/joelchala/ChalaDev#readme",
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   }
 }

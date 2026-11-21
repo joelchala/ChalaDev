@@ -1,8 +1,11 @@
 *.bak
 *.pem
-*.zip
+__pycache__/
 node_modules/
-dist/
-tmp/
+/dist/build/
+/tmp/
 .DS_Store
 Thumbs.db
+
+# Store packages are published as GitHub release assets
+/store/paquetes/

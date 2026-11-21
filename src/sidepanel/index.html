@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChalaDev</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Cabecera Escudo Cibernetico -->
+    <header class="app-header">
+      <div class="brand">
+        <img src="../icons/icon32.png" alt="ChalaDev" class="brand-logo" width="24" height="24">
+        <div class="brand-text">
+          <span class="brand-name">ChalaDev</span>
+          <span class="brand-badge" data-i18n="badgeLocal">100% Local</span>
+        </div>
+      </div>
+      <div id="context-pill" class="context-pill" title="">
+        <span class="context-dot" id="context-dot"></span>
+        <span id="context-label" class="context-label">...</span>
+      </div>
+    </header>
+
+    <!-- Navegacion por pestanas compactas -->
+    <nav class="tab-nav" role="tablist" aria-label="ChalaDev Tools">
+      <button
+        type="button"
+        class="tab-btn is-active"
+        role="tab"
+        aria-selected="true"
+        aria-controls="panel-visual"
+        id="tab-visual"
+        data-tab="visual"
+      >
+        <svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 3a9 9 0 0 0 0 18c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8Zm-5.5 9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm3-4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm3 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Z" fill="currentColor"/>
+        </svg>
+        <span data-i18n="tabVisual">Visual y Color</span>
+      </button>
+
+      <button
+        type="button"
+        class="tab-btn"
+        role="tab"
+        aria-selected="false"
+        aria-controls="panel-formatter"
+        id="tab-formatter"
+        data-tab="formatter"
+      >
+        <svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8.5 5 3 12l5.5 7 1.6-1.3L5.6 12l4.5-5.7L8.5 5Zm7 0-1.6 1.3L18.4 12l-4.5 5.7 1.6 1.3L21 12l-5.5-7Zm-2.2 1.2-4 11.6 1.9.6 4-11.6-1.9-.6Z" fill="currentColor"/>
+        </svg>
+        <span data-i18n="tabFormatter">JSON / JWT</span>
+      </button>
+
+      <button
+        type="button"
+        class="tab-btn"
+        role="tab"
+        aria-selected="false"
+        aria-controls="panel-qrseo"
+        id="tab-qrseo"
+        data-tab="qrseo"
+      >
+        <svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M3 3h8v8H3V3Zm2 2v4h4V5H5Zm8-2h8v8h-8V3Zm2 2v4h4V5h-4ZM3 13h8v8H3v-8Zm2 2v4h4v-4H5Zm10 0h2v2h-2v-2Zm4 0h2v4h-2v-4Zm-4 4h4v2h-4v-2Zm4-4h2v2h-2v-2Zm-6-2h2v2h-2v-2Zm4 6h2v2h-2v-2Z" fill="currentColor"/>
+        </svg>
+        <span data-i18n="tabQrSeo">QR y SEO</span>
+      </button>
+
+      <button
+        type="button"
+        class="tab-btn"
+        role="tab"
+        aria-selected="false"
+        aria-controls="panel-network"
+        id="tab-network"
+        data-tab="network"
+      >
+        <svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm6.93 6h-3.17a15.3 15.3 0 0 0-1.38-3.56A8.03 8.03 0 0 1 18.93 8ZM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96ZM4.26 14a8.26 8.26 0 0 1 0-4h3.38a16.52 16.52 0 0 0-.14 2c0 .68.05 1.35.14 2H4.26Zm.81 2h3.17a15.3 15.3 0 0 0 1.38 3.56A8.03 8.03 0 0 1 5.07 16Zm3.17-8H5.07a8.03 8.03 0 0 1 4.55-3.56A15.3 15.3 0 0 0 8.24 8ZM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96ZM14.34 14H9.66a14.7 14.7 0 0 1-.16-2c0-.68.06-1.35.16-2h4.68c.1.65.16 1.32.16 2s-.06 1.35-.16 2Zm.25 5.56A15.3 15.3 0 0 0 15.76 16h3.17a8.03 8.03 0 0 1-4.34 3.56ZM16.36 14c.09-.65.14-1.32.14-2s-.05-1.35-.14-2h3.38a8.26 8.26 0 0 1 0 4h-3.38Z" fill="currentColor"/>
+        </svg>
+        <span data-i18n="tabNetwork">Red</span>
+      </button>
+
+      <button
+        type="button"
+        class="tab-btn"
+        role="tab"
+        aria-selected="false"
+        aria-controls="panel-app"
+        id="tab-app"
+        data-tab="app"
+      >
+        <svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6Zm2 0v3h12V6H6Zm-2 9a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-3Zm2 0v3h12v-3H6Zm1-8.25h1.5v1.5H7v-1.5Zm0 9h1.5v1.5H7v-1.5Z" fill="currentColor"/>
+        </svg>
+        <span data-i18n="tabApp">Aplicación</span>
+      </button>
+
+      <button
+        type="button"
+        class="tab-btn"
+        role="tab"
+        aria-selected="false"
+        aria-controls="panel-security"
+        id="tab-security"
+        data-tab="security"
+      >
+        <svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2 4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3Zm0 2.18 6 2.25v4.66c0 4.02-2.55 7.82-6 8.85-3.45-1.03-6-4.83-6-8.85V6.43l6-2.25Zm-1 10.32 4.5-4.5-1.4-1.4L11 11.69 9.4 10.1 8 11.5l3 3Z" fill="currentColor"/>
+        </svg>
+        <span data-i18n="tabSecurity">Seguridad</span>
+      </button>
+    </nav>
+
+    <!-- Aviso amigable para paginas internas o sin activeTab -->
+    <div id="page-notice" class="notice-banner is-hidden" role="status">
+      <div class="notice-icon" aria-hidden="true">!</div>
+      <div class="notice-body">
+        <strong id="notice-title"></strong>
+        <p id="notice-desc"></p>
+      </div>
+    </div>
+
+    <!-- Contenido principal -->
+    <main class="main-content">
+      <!-- PESTANA 1: INSPECTOR VISUAL Y COLOR -->
+      <section id="panel-visual" class="tab-panel is-active" role="tabpanel" aria-labelledby="tab-visual">
+        <!-- Cuentagotas de Pantalla + Entrada Manual + Contraste WCAG -->
+        <article class="card">
+          <div class="card-header">
+            <h2 class="card-title" data-i18n="eyeDropperTitle">Cuentagotas y Color</h2>
+            <button id="btn-eyedropper" type="button" class="btn btn-primary btn-sm">
+              <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m20.71 5.63-2.34-2.34a1 1 0 0 0-1.41 0l-3.12 3.12-1.42-1.42-1.41 1.42 1.41 1.41-8.1 8.1A2 2 0 0 0 3.73 17.34V20.27h2.93a2 2 0 0 0 1.42-.59l8.1-8.1 1.41 1.41 1.42-1.41-1.42-1.42 3.12-3.12a1 1 0 0 0 0-1.41ZM7.08 18.27H5.73v-1.35l7.4-7.4 1.35 1.35-7.4 7.4Z" fill="currentColor"/>
+              </svg>
+              <span data-i18n="eyeDropperBtn">Capturar color</span>
+            </button>
+          </div>
+
+          <div class="color-manual-row">
+            <input
+              id="color-native-picker"
+              type="color"
+              class="color-native-input"
+              value="#10B981"
+              aria-label="Selector de color"
+            >
+            <input
+              id="color-manual-input"
+              type="text"
+              class="text-input mono-input"
+              spellcheck="false"
+              data-i18n-placeholder="colorManualPlaceholder"
+              placeholder="#10B981, rgb(...) u oklch(...)"
+            >
+            <button id="btn-color-apply" type="button" class="btn btn-secondary btn-xs" data-i18n="colorApplyBtn">Aplicar</button>
+          </div>
+
+          <div id="eyedropper-status" class="inline-status is-hidden"></div>
+
+          <div class="color-preview-row">
+            <div id="active-color-swatch" class="active-swatch" style="background-color: #10B981;"></div>
+            <div class="color-codes-list">
+              <div class="code-row">
+                <span class="code-label" data-i18n="colorFormatHex">HEX</span>
+                <code id="color-hex-val" class="code-value">#10B981</code>
+                <button type="button" class="btn-copy-mini" data-copy-target="color-hex-val" data-i18n-title="btnCopy" aria-label="Copiar HEX">
+                  <span data-i18n="btnCopy">Copiar</span>
+                </button>
+              </div>
+              <div class="code-row">
+                <span class="code-label" data-i18n="colorFormatRgb">RGB</span>
+                <code id="color-rgb-val" class="code-value">rgb(16, 185, 129)</code>
+                <button type="button" class="btn-copy-mini" data-copy-target="color-rgb-val" data-i18n-title="btnCopy" aria-label="Copiar RGB">
+                  <span data-i18n="btnCopy">Copiar</span>
+                </button>
+              </div>
+              <div class="code-row">
+                <span class="code-label" data-i18n="colorFormatHsl">HSL</span>
+                <code id="color-hsl-val" class="code-value">hsl(160, 84%, 39%)</code>
+                <button type="button" class="btn-copy-mini" data-copy-target="color-hsl-val" data-i18n-title="btnCopy" aria-label="Copiar HSL">
+                  <span data-i18n="btnCopy">Copiar</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Verificador de Contraste WCAG 2.1 -->
+          <div class="wcag-section">
+            <div class="wcag-header">
+              <span class="muted-label" data-i18n="wcagTitle">Contraste WCAG 2.1</span>
+              <span id="wcag-ratio" class="wcag-ratio-badge">8.31:1</span>
+            </div>
+
+            <div class="wcag-controls">
+              <div class="wcag-color-field">
+                <span class="wcag-field-label" data-i18n="wcagFgLabel">Texto</span>
+                <input id="wcag-fg-picker" type="color" class="color-mini-picker" value="#10B981" aria-label="Color texto WCAG">
+                <input id="wcag-fg-input" type="text" class="wcag-hex-input" value="#10B981" spellcheck="false" aria-label="HEX texto WCAG">
+              </div>
+
+              <button id="btn-wcag-swap" type="button" class="btn-icon-mini" data-i18n-title="wcagSwapTitle" title="Intercambiar" aria-label="Intercambiar">⇄</button>
+
+              <div class="wcag-color-field">
+                <span class="wcag-field-label" data-i18n="wcagBgLabel">Fondo</span>
+                <input id="wcag-bg-picker" type="color" class="color-mini-picker" value="#0F172A" aria-label="Color fondo WCAG">
+                <input id="wcag-bg-input" type="text" class="wcag-hex-input" value="#0F172A" spellcheck="false" aria-label="HEX fondo WCAG">
+              </div>
+            </div>
+
+            <div class="wcag-result-row">
+              <div id="wcag-preview" class="wcag-preview" style="color: #10B981; background-color: #0F172A;">
+                <span data-i18n="wcagSampleText">Aa Texto de prueba</span>
+              </div>
+              <div class="wcag-badges">
+                <span id="wcag-aa-badge" class="wcag-pill">AA</span>
+                <span id="wcag-aaa-badge" class="wcag-pill">AAA</span>
+                <span id="wcag-aa-large-badge" class="wcag-pill">AA+</span>
+                <span id="wcag-aaa-large-badge" class="wcag-pill">AAA+</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="history-section">
+            <div class="history-header">
+              <span class="muted-label" data-i18n="colorHistoryTitle">Historial reciente (últimos 12)</span>
+              <button id="btn-clear-colors" type="button" class="btn-link" data-i18n="clearHistory">Limpiar</button>
+            </div>
+            <div id="color-history-grid" class="color-history-grid"></div>
+            <p id="color-history-empty" class="empty-hint" data-i18n="colorHistoryEmpty">
+              Aún no hay colores capturados.
+            </p>
+          </div>
+        </article>
+
+        <!-- Inspector de Tipografia y Caja (Hover DOM) -->
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title" data-i18n="inspectorTitle">Inspector de Tipografía y Caja</h2>
+              <span id="inspector-badge" class="status-pill" data-i18n="inspectorStateIdle">Inactivo</span>
+            </div>
+            <label class="switch" for="toggle-inspector">
+              <input type="checkbox" id="toggle-inspector">
+              <span class="switch-slider"></span>
+              <span class="switch-text" id="toggle-inspector-text" data-i18n="inspectorToggleLabel">Inspeccionar elemento</span>
+            </label>
+          </div>
+
+          <p class="helper-text" data-i18n="inspectorHint">
+            Activa el interruptor y pasa el cursor sobre la web (soporta Shadow DOM). Clic para fijar; Esc para salir.
+          </p>
+
+          <div class="inspector-grid" id="inspector-results">
+            <div class="metric-item metric-wide">
+              <span class="metric-label" data-i18n="propTag">Etiqueta</span>
+              <div class="metric-val-wrap">
+                <code id="insp-tag" class="metric-val accent-text">—</code>
+                <button type="button" class="btn-icon-copy" data-copy-target="insp-tag" title="Copiar"></button>
+              </div>
+            </div>
+
+            <div class="metric-item">
+              <span class="metric-label" data-i18n="propDimensions">Dimensiones</span>
+              <div class="metric-val-wrap">
+                <code id="insp-dimensions" class="metric-val">—</code>
+                <button type="button" class="btn-icon-copy" data-copy-target="insp-dimensions" title="Copiar"></button>
+              </div>
+            </div>
+
+            <div class="metric-item">
+              <span class="metric-label" data-i18n="propDisplay">Display</span>
+              <div class="metric-val-wrap">
+                <code id="insp-display" class="metric-val">—</code>
+                <button type="button" class="btn-icon-copy" data-copy-target="insp-display" title="Copiar"></button>
+              </div>
+            </div>
+
+            <div class="metric-item">
+              <span class="metric-label" data-i18n="propPadding">Padding</span>
+              <div class="metric-val-wrap">
+                <code id="insp-padding" class="metric-val truncate">—</code>
+                <button type="button" class="btn-icon-copy" data-copy-target="insp-padding" title="Copiar"></button>
+              </div>
+            </div>
+
+            <div class="metric-item">
+              <span class="metric-label" data-i18n="propMargin">Margin</span>
+              <div class="metric-val-wrap">
+                <code id="insp-margin" class="metric-val truncate">—</code>
+                <button type="button" class="btn-icon-copy" data-copy-target="insp-margin" title="Copiar"></button>
+              </div>
+            </div>
+
+            <div class="metric-item metric-wide">
+              <span class="metric-label" data-i18n="propBorderRadius">Border Radius</span>
+              <div class="metric-val-wrap">
+                <code id="insp-border-radius" class="metric-val truncate">—</code>
+                <button type="button" class="btn-icon-copy" data-copy-target="insp-border-radius" title="Copiar"></button>
+              </div>
+            </div>
+
+            <div class="metric-item metric-wide">
+              <span class="metric-label" data-i18n="propFontFamily">Font Family</span>
+              <div class="metric-val-wrap">
+                <code id="insp-font-family" class="metric-val truncate">—</code>
+                <button type="button" class="btn-icon-copy" data-copy-target="insp-font-family" title="Copiar"></button>
+              </div>
+            </div>
+
+            <div class="metric-item">
+              <span class="metric-label" data-i18n="propFontSize">Font Size</span>
+              <div class="metric-val-wrap">
+                <code id="insp-font-size" class="metric-val">—</code>
+                <button type="button" class="btn-icon-copy" data-copy-target="insp-font-size" title="Copiar"></button>
+              </div>
+            </div>
+
+            <div class="metric-item">
+              <span class="metric-label" data-i18n="propFontWeight">Font Weight</span>
+              <div class="metric-val-wrap">
+                <code id="insp-font-weight" class="metric-val">—</code>
+                <button type="button" class="btn-icon-copy" data-copy-target="insp-font-weight" title="Copiar"></button>
+              </div>
+            </div>
+
+            <div class="metric-item metric-wide">
+              <span class="metric-label" data-i18n="propLineHeight">Line Height</span>
+              <div class="metric-val-wrap">
+                <code id="insp-line-height" class="metric-val">—</code>
+                <button type="button" class="btn-icon-copy" data-copy-target="insp-line-height" title="Copiar"></button>
+              </div>
+            </div>
+
+            <div class="metric-item metric-wide">
+              <span class="metric-label" data-i18n="propTextColor">Color texto</span>
+              <div class="metric-val-wrap">
+                <span id="insp-color-dot" class="mini-swatch"></span>
+                <code id="insp-color" class="metric-val truncate">—</code>
+                <div class="metric-actions">
+                  <button
+                    id="btn-insp-save-color"
+                    type="button"
+                    class="btn-icon-mini"
+                    disabled
+                    data-i18n-title="inspectorSaveColorTitle"
+                    title="Guardar color"
+                    aria-label="Guardar color en historial"
+                  >+</button>
+                  <button type="button" class="btn-icon-copy" data-copy-target="insp-color" title="Copiar"></button>
+                </div>
+              </div>
+            </div>
+
+            <div class="metric-item metric-wide">
+              <span class="metric-label" data-i18n="propBgColor">Color fondo</span>
+              <div class="metric-val-wrap">
+                <span id="insp-bg-dot" class="mini-swatch"></span>
+                <code id="insp-bg" class="metric-val truncate">—</code>
+                <div class="metric-actions">
+                  <button
+                    id="btn-insp-save-bg"
+                    type="button"
+                    class="btn-icon-mini"
+                    disabled
+                    data-i18n-title="inspectorSaveColorTitle"
+                    title="Guardar color"
+                    aria-label="Guardar fondo en historial"
+                  >+</button>
+                  <button type="button" class="btn-icon-copy" data-copy-target="insp-bg" title="Copiar"></button>
+                </div>
+              </div>
+            </div>
+
+            <div class="metric-item metric-wide">
+              <span class="metric-label" data-i18n="propContrast">Contraste WCAG</span>
+              <div class="metric-val-wrap">
+                <div class="insp-contrast-info">
+                  <code id="insp-contrast-ratio" class="metric-val">—</code>
+                  <span id="insp-contrast-aa" class="wcag-pill is-hidden">AA</span>
+                  <span id="insp-contrast-aaa" class="wcag-pill is-hidden">AAA</span>
+                </div>
+                <button
+                  id="btn-insp-load-wcag"
+                  type="button"
+                  class="btn-icon-mini"
+                  disabled
+                  data-i18n-title="inspectorLoadContrastTitle"
+                  title="Cargar en WCAG"
+                  aria-label="Cargar par en verificador WCAG"
+                >WCAG</button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- PESTANA 2: FORMATEADOR Y DECODIFICADOR LOCAL -->
+      <section id="panel-formatter" class="tab-panel" role="tabpanel" aria-labelledby="tab-formatter">
+        <!-- JSON Formatter / Validator -->
+        <article class="card">
+          <div class="card-header">
+            <h2 class="card-title" data-i18n="jsonTitle">JSON Formatter / Validator</h2>
+            <button id="btn-json-copy" type="button" class="btn btn-secondary btn-xs" data-i18n="btnCopy">Copiar</button>
+          </div>
+          <textarea
+            id="json-input"
+            class="code-textarea"
+            rows="6"
+            spellcheck="false"
+            data-i18n-placeholder="jsonPlaceholder"
+            placeholder="Pega aquí tu JSON minificado o desordenado..."
+          ></textarea>
+          <div class="btn-group">
+            <button id="btn-json-format" type="button" class="btn btn-primary btn-xs" data-i18n="btnFormat">Formatear</button>
+            <button id="btn-json-minify" type="button" class="btn btn-secondary btn-xs" data-i18n="btnMinify">Minificar</button>
+            <button id="btn-json-validate" type="button" class="btn btn-secondary btn-xs" data-i18n="btnValidate">Validar</button>
+            <button id="btn-json-clear" type="button" class="btn btn-ghost btn-xs" data-i18n="btnClear">Limpiar</button>
+          </div>
+          <div id="json-status" class="status-feedback is-hidden"></div>
+        </article>
+
+        <!-- Conversor Base64 -->
+        <article class="card">
+          <div class="card-header">
+            <h2 class="card-title" data-i18n="base64Title">Conversor Base64 (UTF-8)</h2>
+            <button id="btn-b64-copy" type="button" class="btn btn-secondary btn-xs" data-i18n="btnCopy">Copiar</button>
+          </div>
+          <textarea
+            id="b64-input"
+            class="code-textarea"
+            rows="3"
+            spellcheck="false"
+            data-i18n-placeholder="base64Placeholder"
+            placeholder="Texto plano o cadena Base64..."
+          ></textarea>
+          <div class="btn-group btn-group-between">
+            <div class="btn-group">
+              <button id="btn-b64-encode" type="button" class="btn btn-primary btn-xs" data-i18n="btnEncode">Codificar</button>
+              <button id="btn-b64-decode" type="button" class="btn btn-secondary btn-xs" data-i18n="btnDecode">Decodificar</button>
+              <button id="btn-b64-swap" type="button" class="btn btn-ghost btn-xs" data-i18n="btnSwap">Intercambiar</button>
+              <button id="btn-b64-clear" type="button" class="btn btn-ghost btn-xs" data-i18n="btnClear">Limpiar</button>
+            </div>
+            <label class="inline-check" for="b64-url-safe">
+              <input id="b64-url-safe" type="checkbox">
+              <span data-i18n="b64UrlSafeLabel">Base64URL</span>
+            </label>
+          </div>
+          <textarea
+            id="b64-output"
+            class="code-textarea code-output"
+            rows="3"
+            readonly
+            spellcheck="false"
+            data-i18n-placeholder="base64OutputPlaceholder"
+            placeholder="Resultado..."
+          ></textarea>
+          <div id="b64-status" class="status-feedback is-hidden"></div>
+        </article>
+
+        <!-- Decodificador JWT 100% Offline -->
+        <article class="card">
+          <div class="card-header">
+            <h2 class="card-title" data-i18n="jwtTitle">Decodificador JWT</h2>
+            <span class="offline-pill" data-i18n="jwtOfflineBadge">Procesamiento 100% offline</span>
+          </div>
+          <textarea
+            id="jwt-input"
+            class="code-textarea"
+            rows="3"
+            spellcheck="false"
+            data-i18n-placeholder="jwtPlaceholder"
+            placeholder="Pega un token JWT (header.payload.signature)..."
+          ></textarea>
+          <div class="btn-group">
+            <button id="btn-jwt-decode" type="button" class="btn btn-primary btn-xs" data-i18n="jwtDecodeBtn">Decodificar JWT</button>
+            <button id="btn-jwt-clear" type="button" class="btn btn-ghost btn-xs" data-i18n="btnClear">Limpiar</button>
+          </div>
+          <div id="jwt-status" class="status-feedback is-hidden"></div>
+
+          <div id="jwt-output-wrap" class="jwt-output-wrap is-hidden">
+            <div class="jwt-block">
+              <div class="jwt-block-header">
+                <span class="muted-label" data-i18n="jwtHeaderLabel">Header</span>
+                <div class="jwt-meta-actions">
+                  <span id="jwt-alg-badge" class="status-pill is-hidden"></span>
+                  <button type="button" class="btn-copy-mini" data-copy-target="jwt-header-pre" data-i18n="btnCopy">Copiar</button>
+                </div>
+              </div>
+              <pre id="jwt-header-pre" class="code-pre"></pre>
+            </div>
+            <div class="jwt-block">
+              <div class="jwt-block-header">
+                <span class="muted-label" data-i18n="jwtPayloadLabel">Payload</span>
+                <div class="jwt-meta-actions">
+                  <span id="jwt-exp-badge" class="status-pill"></span>
+                  <button type="button" class="btn-copy-mini" data-copy-target="jwt-payload-pre" data-i18n="btnCopy">Copiar</button>
+                </div>
+              </div>
+              <pre id="jwt-payload-pre" class="code-pre"></pre>
+            </div>
+            <div id="jwt-claims-dates" class="jwt-claims-dates is-hidden"></div>
+            <p id="jwt-sig-note" class="helper-text"></p>
+          </div>
+        </article>
+      </section>
+
+      <!-- PESTANA 3: QR Y VISTA RAPIDA SEO -->
+      <section id="panel-qrseo" class="tab-panel" role="tabpanel" aria-labelledby="tab-qrseo">
+        <!-- Generador QR -->
+        <article class="card">
+          <div class="card-header">
+            <h2 class="card-title" data-i18n="qrTitle">Generador QR Instantáneo</h2>
+            <button id="btn-qr-current-tab" type="button" class="btn-link" data-i18n="qrUseCurrentTab">Usar pestaña actual</button>
+          </div>
+
+          <div class="qr-input-row">
+            <input
+              id="qr-input"
+              type="text"
+              class="text-input"
+              spellcheck="false"
+              data-i18n-placeholder="qrInputPlaceholder"
+              placeholder="Escribe una URL o texto..."
+            >
+          </div>
+
+          <div class="qr-stage">
+            <div class="qr-canvas-frame">
+              <canvas id="qr-canvas" width="220" height="220"></canvas>
+            </div>
+            <p id="qr-status" class="helper-text"></p>
+            <div class="btn-group qr-actions">
+              <button id="btn-qr-download" type="button" class="btn btn-primary btn-xs">
+                <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 20h14v-2H5v2Zm7-16v9.17l3.59-3.58L17 11l-5 5-5-5 1.41-1.41L11 13.17V4h2Z" fill="currentColor"/>
+                </svg>
+                <span data-i18n="qrDownloadPng512">PNG 512px</span>
+              </button>
+              <button id="btn-qr-download-svg" type="button" class="btn btn-secondary btn-xs" data-i18n="qrDownloadSvg">SVG</button>
+              <button id="btn-qr-copy-img" type="button" class="btn btn-secondary btn-xs" data-i18n="qrCopyImage">Copiar imagen</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Metadatos Rapidos SEO & OpenGraph -->
+        <article class="card">
+          <div class="card-header">
+            <h2 class="card-title" data-i18n="seoTitle">Metadatos Rápidos (SEO y OpenGraph)</h2>
+            <div class="btn-group">
+              <button id="btn-seo-copy-report" type="button" class="btn btn-secondary btn-xs" data-i18n="seoCopyReport">Copiar reporte</button>
+              <button id="btn-seo-refresh" type="button" class="btn btn-secondary btn-xs" data-i18n="seoRefreshBtn">Actualizar</button>
+            </div>
+          </div>
+
+          <div id="seo-list" class="seo-list">
+            <div class="seo-item">
+              <div class="seo-item-head">
+                <span class="metric-label" data-i18n="seoFieldTitle">Título (30–60)</span>
+                <span id="seo-title-len" class="char-badge"></span>
+              </div>
+              <div class="seo-val-row">
+                <p id="seo-title" class="seo-val">—</p>
+                <button type="button" class="btn-icon-copy" data-copy-target="seo-title" title="Copiar"></button>
+              </div>
+            </div>
+
+            <div class="seo-item">
+              <div class="seo-item-head">
+                <span class="metric-label" data-i18n="seoFieldDescription">Description (120–160)</span>
+                <span id="seo-desc-len" class="char-badge"></span>
+              </div>
+              <div class="seo-val-row">
+                <p id="seo-description" class="seo-val">—</p>
+                <button type="button" class="btn-icon-copy" data-copy-target="seo-description" title="Copiar"></button>
+              </div>
+            </div>
+
+            <div class="seo-item">
+              <div class="seo-item-head">
+                <span class="metric-label" data-i18n="seoFieldCanonical">Canonical</span>
+              </div>
+              <div class="seo-val-row">
+                <p id="seo-canonical" class="seo-val mono-sm">—</p>
+                <button type="button" class="btn-icon-copy" data-copy-target="seo-canonical" title="Copiar"></button>
+              </div>
+            </div>
+
+            <div class="seo-grid-two">
+              <div class="seo-item">
+                <div class="seo-item-head">
+                  <span class="metric-label" data-i18n="seoFieldRobots">Robots</span>
+                </div>
+                <div class="seo-val-row">
+                  <p id="seo-robots" class="seo-val mono-sm">—</p>
+                  <button type="button" class="btn-icon-copy" data-copy-target="seo-robots" title="Copiar"></button>
+                </div>
+              </div>
+
+              <div class="seo-item">
+                <div class="seo-item-head">
+                  <span class="metric-label" data-i18n="seoFieldLangCharset">Lang / Charset</span>
+                </div>
+                <div class="seo-val-row">
+                  <p id="seo-lang-charset" class="seo-val mono-sm">—</p>
+                  <button type="button" class="btn-icon-copy" data-copy-target="seo-lang-charset" title="Copiar"></button>
+                </div>
+              </div>
+            </div>
+
+            <div class="seo-item">
+              <div class="seo-item-head">
+                <span class="metric-label" data-i18n="seoFieldViewport">Viewport</span>
+              </div>
+              <div class="seo-val-row">
+                <p id="seo-viewport" class="seo-val mono-sm">—</p>
+                <button type="button" class="btn-icon-copy" data-copy-target="seo-viewport" title="Copiar"></button>
+              </div>
+            </div>
+
+            <div class="seo-grid-two">
+              <div class="seo-item">
+                <div class="seo-item-head">
+                  <span class="metric-label" data-i18n="seoFieldH1">Encabezados H1</span>
+                  <span id="seo-h1-badge" class="char-badge"></span>
+                </div>
+                <div class="seo-val-row">
+                  <p id="seo-h1" class="seo-val">—</p>
+                  <button type="button" class="btn-icon-copy" data-copy-target="seo-h1" title="Copiar"></button>
+                </div>
+              </div>
+
+              <div class="seo-item">
+                <div class="seo-item-head">
+                  <span class="metric-label" data-i18n="seoFieldImagesAlt">Imágenes y alt</span>
+                  <span id="seo-images-badge" class="char-badge"></span>
+                </div>
+                <div class="seo-val-row">
+                  <p id="seo-images-alt" class="seo-val">—</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="seo-item">
+              <div class="seo-item-head">
+                <span class="metric-label" data-i18n="seoFieldOgTitle">og:title</span>
+              </div>
+              <div class="seo-val-row">
+                <p id="seo-og-title" class="seo-val">—</p>
+                <button type="button" class="btn-icon-copy" data-copy-target="seo-og-title" title="Copiar"></button>
+              </div>
+            </div>
+
+            <div class="seo-item">
+              <div class="seo-item-head">
+                <span class="metric-label" data-i18n="seoFieldOgDesc">og:description</span>
+              </div>
+              <div class="seo-val-row">
+                <p id="seo-og-desc" class="seo-val">—</p>
+                <button type="button" class="btn-icon-copy" data-copy-target="seo-og-desc" title="Copiar"></button>
+              </div>
+            </div>
+
+            <div class="seo-item">
+              <div class="seo-item-head">
+                <span class="metric-label" data-i18n="seoFieldOgType">og:type</span>
+              </div>
+              <div class="seo-val-row">
+                <p id="seo-og-type" class="seo-val mono-sm">—</p>
+                <button type="button" class="btn-icon-copy" data-copy-target="seo-og-type" title="Copiar"></button>
+              </div>
+            </div>
+
+            <div class="seo-item">
+              <div class="seo-item-head">
+                <span class="metric-label" data-i18n="seoFieldOgUrl">og:url</span>
+              </div>
+              <div class="seo-val-row">
+                <p id="seo-og-url" class="seo-val mono-sm">—</p>
+                <button type="button" class="btn-icon-copy" data-copy-target="seo-og-url" title="Copiar"></button>
+              </div>
+            </div>
+
+            <div class="seo-item">
+              <div class="seo-item-head">
+                <span class="metric-label" data-i18n="seoFieldOgImage">og:image</span>
+              </div>
+              <div class="seo-val-row">
+                <p id="seo-og-image" class="seo-val mono-sm">—</p>
+                <button type="button" class="btn-icon-copy" data-copy-target="seo-og-image" title="Copiar"></button>
+              </div>
+            </div>
+
+            <div class="seo-item">
+              <div class="seo-item-head">
+                <span class="metric-label" data-i18n="seoFieldTwitterCard">twitter:card</span>
+              </div>
+              <div class="seo-val-row">
+                <p id="seo-twitter-card" class="seo-val mono-sm">—</p>
+                <button type="button" class="btn-icon-copy" data-copy-target="seo-twitter-card" title="Copiar"></button>
+              </div>
+            </div>
+
+            <div class="seo-item">
+              <div class="seo-item-head">
+                <span class="metric-label" data-i18n="seoFieldTwitterTitle">twitter:title</span>
+              </div>
+              <div class="seo-val-row">
+                <p id="seo-twitter-title" class="seo-val">—</p>
+                <button type="button" class="btn-icon-copy" data-copy-target="seo-twitter-title" title="Copiar"></button>
+              </div>
+            </div>
+
+            <div class="seo-item">
+              <div class="seo-item-head">
+                <span class="metric-label" data-i18n="seoFieldTwitterDesc">twitter:description</span>
+              </div>
+              <div class="seo-val-row">
+                <p id="seo-twitter-desc" class="seo-val">—</p>
+                <button type="button" class="btn-icon-copy" data-copy-target="seo-twitter-desc" title="Copiar"></button>
+              </div>
+            </div>
+
+            <div class="seo-item">
+              <div class="seo-item-head">
+                <span class="metric-label" data-i18n="seoFieldTwitterImage">twitter:image</span>
+              </div>
+              <div class="seo-val-row">
+                <p id="seo-twitter-image" class="seo-val mono-sm">—</p>
+                <button type="button" class="btn-icon-copy" data-copy-target="seo-twitter-image" title="Copiar"></button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- PESTANA 4: RED (RECURSOS Y MONITOR EN VIVO) -->
+      <section id="panel-network" class="tab-panel" role="tabpanel" aria-labelledby="tab-network">
+        <!-- Resumen de Recursos (Performance API) -->
+        <article class="card">
+          <div class="card-header">
+            <h2 class="card-title" data-i18n="netSummaryTitle">Resumen de Red y Recursos</h2>
+            <button id="btn-net-refresh" type="button" class="btn btn-secondary btn-xs" data-i18n="seoRefreshBtn">Actualizar</button>
+          </div>
+
+          <div class="summary-grid">
+            <div class="summary-stat">
+              <span class="metric-label" data-i18n="netResourcesCount">Recursos</span>
+              <strong id="net-stat-count" class="summary-val">0</strong>
+            </div>
+            <div class="summary-stat">
+              <span class="metric-label" data-i18n="netTransferLabel">Transferido</span>
+              <strong id="net-stat-transfer" class="summary-val">0 B</strong>
+            </div>
+            <div class="summary-stat">
+              <span class="metric-label" data-i18n="netLoadLabel">Carga / DOM</span>
+              <strong id="net-stat-load" class="summary-val">—</strong>
+            </div>
+            <div class="summary-stat">
+              <span class="metric-label" data-i18n="netCacheLabel">En caché</span>
+              <strong id="net-stat-cache" class="summary-val">0</strong>
+            </div>
+          </div>
+
+          <div class="filter-bar">
+            <div class="filter-chips" id="net-type-filters">
+              <button type="button" class="chip-btn is-active" data-net-filter="all" data-i18n="netFilterAll">Todos</button>
+              <button type="button" class="chip-btn" data-net-filter="fetch" data-i18n="netFilterFetch">Fetch / XHR</button>
+              <button type="button" class="chip-btn" data-net-filter="script" data-i18n="netFilterScript">Scripts</button>
+              <button type="button" class="chip-btn" data-net-filter="css" data-i18n="netFilterCss">CSS</button>
+              <button type="button" class="chip-btn" data-net-filter="img" data-i18n="netFilterImg">Imágenes</button>
+              <button type="button" class="chip-btn" data-net-filter="other" data-i18n="netFilterOther">Otros</button>
+            </div>
+            <input
+              id="net-search-input"
+              type="text"
+              class="text-input mono-input"
+              spellcheck="false"
+              data-i18n-placeholder="netSearchPlaceholder"
+              placeholder="Filtrar por URL..."
+            >
+          </div>
+
+          <div id="net-resources-list" class="scroll-list"></div>
+          <p id="net-resources-empty" class="empty-hint" data-i18n="netResourcesEmpty">
+            No hay recursos registrados o que coincidan con el filtro.
+          </p>
+        </article>
+
+        <!-- Monitor en vivo (fetch / XHR) -->
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title" data-i18n="netLiveTitle">Monitor en vivo (fetch / XHR)</h2>
+              <span id="net-live-badge" class="status-pill" data-i18n="netStateIdle">Inactivo</span>
+            </div>
+            <label class="switch" for="toggle-net-monitor">
+              <input type="checkbox" id="toggle-net-monitor">
+              <span class="switch-slider"></span>
+              <span class="switch-text" id="toggle-net-text" data-i18n="netLiveToggle">Capturar tráfico</span>
+            </label>
+          </div>
+
+          <div class="btn-group btn-group-between">
+            <div class="btn-group">
+              <button id="btn-net-copy-json" type="button" class="btn btn-secondary btn-xs" disabled data-i18n="netLiveCopyJson">Copiar JSON</button>
+              <button id="btn-net-clear-live" type="button" class="btn btn-ghost btn-xs" disabled data-i18n="btnClear">Limpiar</button>
+            </div>
+            <span id="net-live-count" class="char-badge">0</span>
+          </div>
+
+          <div id="net-live-list" class="scroll-list"></div>
+          <p id="net-live-empty" class="empty-hint" data-i18n="netLiveEmpty">
+            Activa la captura para registrar llamadas fetch y XHR en tiempo real (máx. 100).
+          </p>
+          <p class="helper-text" data-i18n="netScopeNote">
+            Alcance local con permisos mínimos (sin debugger ni &lt;all_urls&gt;): inspecciona Performance API y fetch/XHR de la pestaña. No captura paquetes TCP/Wireshark ni cabeceras HttpOnly.
+          </p>
+        </article>
+      </section>
+
+      <!-- PESTANA 5: APLICACION (MANIFEST, WEBMCP, STORAGE, SW) -->
+      <section id="panel-app" class="tab-panel" role="tabpanel" aria-labelledby="tab-app">
+        <!-- Web App Manifest -->
+        <article class="card">
+          <div class="card-header">
+            <h2 class="card-title" data-i18n="appManifestTitle">Web App Manifest (PWA)</h2>
+            <div class="btn-group">
+              <button id="btn-app-validate-manifest" type="button" class="btn btn-primary btn-xs" data-i18n="appValidateManifest">Validar Manifest</button>
+              <button id="btn-app-refresh" type="button" class="btn btn-secondary btn-xs" data-i18n="seoRefreshBtn">Actualizar</button>
+            </div>
+          </div>
+
+          <p id="app-manifest-url" class="seo-val mono-sm is-missing">—</p>
+          <div id="app-manifest-status" class="inline-status is-hidden"></div>
+          <div id="app-manifest-checks" class="checks-chips"></div>
+        </article>
+
+        <!-- WebMCP -->
+        <article class="card">
+          <div class="card-header">
+            <h2 class="card-title" data-i18n="appWebMcpTitle">WebMCP (navigator.modelContext)</h2>
+            <span id="app-webmcp-badge" class="status-pill">—</span>
+          </div>
+          <div id="app-webmcp-list" class="compact-list"></div>
+          <p id="app-webmcp-empty" class="empty-hint" data-i18n="appWebMcpNone">
+            No se detectaron herramientas WebMCP registradas ni formularios con toolname.
+          </p>
+        </article>
+
+        <!-- Storage, Cookies JS, IndexedDB, Cache & SW -->
+        <article class="card">
+          <div class="card-header">
+            <h2 class="card-title" data-i18n="appStorageTitle">Storage, Cookies y Service Workers</h2>
+            <span id="app-quota-pill" class="char-badge"></span>
+          </div>
+
+          <div class="subtab-nav" id="app-storage-tabs">
+            <button type="button" class="chip-btn is-active" data-storage-tab="localStorage" data-i18n="appTabLocal">localStorage</button>
+            <button type="button" class="chip-btn" data-storage-tab="sessionStorage" data-i18n="appTabSession">sessionStorage</button>
+            <button type="button" class="chip-btn" data-storage-tab="cookies" data-i18n="appTabCookies">Cookies JS</button>
+            <button type="button" class="chip-btn" data-storage-tab="workers" data-i18n="appTabWorkers">IDB / Cache / SW</button>
+          </div>
+
+          <input
+            id="app-storage-search"
+            type="text"
+            class="text-input mono-input"
+            spellcheck="false"
+            data-i18n-placeholder="appStorageSearchPlaceholder"
+            placeholder="Filtrar claves o nombres..."
+          >
+
+          <p id="app-cookies-note" class="helper-text is-hidden" data-i18n="appCookiesHttpOnlyNote">
+            Muestra solo cookies accesibles por JS (excluye HttpOnly; sin permiso global cookies).
+          </p>
+
+          <div id="app-storage-list" class="scroll-list"></div>
+          <p id="app-storage-empty" class="empty-hint" data-i18n="appStorageEmpty">
+            Sin registros en esta sección.
+          </p>
+        </article>
+      </section>
+
+      <!-- PESTANA 6: SEGURIDAD (SECURITY OVERVIEW) -->
+      <section id="panel-security" class="tab-panel" role="tabpanel" aria-labelledby="tab-security">
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title" data-i18n="secTitle">Resumen de Seguridad (Security Overview)</h2>
+              <span id="sec-score-badge" class="status-pill">—</span>
+            </div>
+            <button id="btn-sec-refresh" type="button" class="btn btn-secondary btn-xs" data-i18n="seoRefreshBtn">Actualizar</button>
+          </div>
+
+          <div class="btn-group">
+            <button id="btn-sec-audit-headers" type="button" class="btn btn-primary btn-xs" data-i18n="secAuditHeadersBtn">Auditar cabeceras HTTP</button>
+            <button id="btn-sec-copy-report" type="button" class="btn btn-secondary btn-xs" disabled data-i18n="secCopyReport">Copiar reporte</button>
+          </div>
+
+          <div id="sec-status" class="inline-status is-hidden"></div>
+          <p class="helper-text" data-i18n="secHeadersHint">
+            Analiza DOM, contexto seguro y claves en JS sin peticiones. Pulsa "Auditar cabeceras HTTP" para consultar HEAD en el mismo origen.
+          </p>
+
+          <div id="sec-checks-list" class="seo-list"></div>
+          <div id="sec-details-box" class="sec-details-box is-hidden"></div>
+        </article>
+      </section>
+    </main>
+
+    <!-- Pie de pagina de Comunidad y Donaciones -->
+    <footer class="app-footer">
+      <div class="footer-actions">
+        <a
+          id="link-paypal"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="donate-btn"
+        >
+          <span class="donate-heart" aria-hidden="true">&#9829;</span>
+          <span data-i18n="paypalDonate">Donar vía PayPal</span>
+        </a>
+        <a
+          id="link-github"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="footer-link"
+          data-i18n="githubRepo"
+        >GitHub (MIT)</a>
+      </div>
+
+      <div class="suite-row">
+        <span class="suite-label" data-i18n="suiteLabel">Suite Chala:</span>
+        <a id="link-chalablock" href="#" target="_blank" rel="noopener noreferrer" class="suite-link">Chalablock</a>
+        <span class="suite-sep">&middot;</span>
+        <a id="link-chalavpn" href="#" target="_blank" rel="noopener noreferrer" class="suite-link">ChalaVPN</a>
+        <span class="suite-sep">&middot;</span>
+        <a id="link-chalatabs" href="#" target="_blank" rel="noopener noreferrer" class="suite-link">ChalaTabs</a>
+      </div>
+      <div class="privacy-note" data-i18n="privacyNote">Ejecución local · Cero telemetría</div>
+    </footer>
+
+    <!-- Toast de confirmacion de copiado -->
+    <div id="copy-toast" class="copy-toast" role="status" aria-live="polite"></div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

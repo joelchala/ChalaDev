@@ -1,0 +1,641 @@
+{
+  "extName": {
+    "message": "ChalaDev — Local Web Dev Utilities"
+  },
+  "extDescription": {
+    "message": "Local Side Panel suite: WCAG color picker, DOM inspector, offline JSON/Base64/JWT, QR/SEO, network, app & security."
+  },
+  "actionTitle": {
+    "message": "Open ChalaDev in the side panel"
+  },
+  "badgeLocal": {
+    "message": "100% Local"
+  },
+  "tabVisual": {
+    "message": "Visual & Color"
+  },
+  "tabFormatter": {
+    "message": "JSON / JWT"
+  },
+  "tabQrSeo": {
+    "message": "QR & SEO"
+  },
+  "tabNetwork": {
+    "message": "Network"
+  },
+  "tabApp": {
+    "message": "Application"
+  },
+  "tabSecurity": {
+    "message": "Security"
+  },
+  "restrictedTitle": {
+    "message": "Internal browser page"
+  },
+  "restrictedDesc": {
+    "message": "Live page tools (DOM inspector, SEO, Network, Application & Security) cannot run on internal pages like chrome:// or edge://. EyeDropper, JSON/Base64/JWT tools and custom QR codes remain available."
+  },
+  "permissionHintTitle": {
+    "message": "On-demand access (activeTab)"
+  },
+  "permissionHintDesc": {
+    "message": "Click the ChalaDev toolbar icon while viewing this tab to grant temporary access for page inspection, network, app, and security checks."
+  },
+  "eyeDropperTitle": {
+    "message": "EyeDropper & Color"
+  },
+  "eyeDropperBtn": {
+    "message": "Pick color"
+  },
+  "eyeDropperUnsupported": {
+    "message": "EyeDropper API is not available in this browser."
+  },
+  "eyeDropperCancelled": {
+    "message": "Color picking cancelled."
+  },
+  "eyeDropperError": {
+    "message": "Failed to capture color with EyeDropper."
+  },
+  "colorManualPlaceholder": {
+    "message": "#10B981, rgb(...) or oklch(...)"
+  },
+  "colorApplyBtn": {
+    "message": "Apply"
+  },
+  "colorInvalidError": {
+    "message": "Invalid color. Use HEX, rgb(), hsl(), oklch(), or color(srgb ...)."
+  },
+  "colorSavedToast": {
+    "message": "Color saved to history"
+  },
+  "colorFormatHex": {
+    "message": "HEX"
+  },
+  "colorFormatRgb": {
+    "message": "RGB"
+  },
+  "colorFormatHsl": {
+    "message": "HSL"
+  },
+  "wcagTitle": {
+    "message": "WCAG 2.1 Contrast"
+  },
+  "wcagFgLabel": {
+    "message": "Text"
+  },
+  "wcagBgLabel": {
+    "message": "Bg"
+  },
+  "wcagSwapTitle": {
+    "message": "Swap text and background colors"
+  },
+  "wcagSampleText": {
+    "message": "Aa Sample text"
+  },
+  "wcagPass": {
+    "message": "Pass"
+  },
+  "wcagFail": {
+    "message": "Fail"
+  },
+  "wcagLargeLabel": {
+    "message": "Large"
+  },
+  "colorHistoryTitle": {
+    "message": "Recent history (last 12)"
+  },
+  "colorHistoryEmpty": {
+    "message": "No captured colors yet. Click \"Pick color\" or apply one manually."
+  },
+  "clearHistory": {
+    "message": "Clear"
+  },
+  "inspectorTitle": {
+    "message": "Typography & Box Inspector"
+  },
+  "inspectorToggleLabel": {
+    "message": "Inspect element"
+  },
+  "inspectorStopLabel": {
+    "message": "Stop inspector"
+  },
+  "inspectorHint": {
+    "message": "Enable the toggle and hover over the page (supports Shadow DOM). Click to lock; press Esc to exit."
+  },
+  "inspectorStateIdle": {
+    "message": "Idle"
+  },
+  "inspectorStateActive": {
+    "message": "Active (hover)"
+  },
+  "inspectorStateLocked": {
+    "message": "Locked (click to unlock)"
+  },
+  "propTag": {
+    "message": "Tag"
+  },
+  "propDimensions": {
+    "message": "Dimensions"
+  },
+  "propDisplay": {
+    "message": "Display"
+  },
+  "propBorderRadius": {
+    "message": "Border Radius"
+  },
+  "propPadding": {
+    "message": "Padding"
+  },
+  "propMargin": {
+    "message": "Margin"
+  },
+  "propFontFamily": {
+    "message": "Font Family"
+  },
+  "propFontSize": {
+    "message": "Font Size"
+  },
+  "propFontWeight": {
+    "message": "Font Weight"
+  },
+  "propLineHeight": {
+    "message": "Line Height"
+  },
+  "propTextColor": {
+    "message": "Text Color"
+  },
+  "propBgColor": {
+    "message": "Background"
+  },
+  "propContrast": {
+    "message": "WCAG Contrast"
+  },
+  "inspectorSaveColorTitle": {
+    "message": "Save color to history"
+  },
+  "inspectorLoadContrastTitle": {
+    "message": "Load pair into WCAG contrast checker"
+  },
+  "jsonTitle": {
+    "message": "JSON Formatter / Validator"
+  },
+  "jsonPlaceholder": {
+    "message": "Paste minified or messy JSON here..."
+  },
+  "btnFormat": {
+    "message": "Format"
+  },
+  "btnMinify": {
+    "message": "Minify"
+  },
+  "btnValidate": {
+    "message": "Validate"
+  },
+  "btnCopy": {
+    "message": "Copy"
+  },
+  "btnClear": {
+    "message": "Clear"
+  },
+  "jsonValidMsg": {
+    "message": "Valid JSON ($1)"
+  },
+  "jsonEmptyError": {
+    "message": "Enter JSON content to process."
+  },
+  "jsonSyntaxError": {
+    "message": "Syntax error at line $1, column $2: $3"
+  },
+  "jsonSyntaxErrorNoCoords": {
+    "message": "JSON syntax error: $1"
+  },
+  "base64Title": {
+    "message": "Base64 Converter (UTF-8)"
+  },
+  "base64Placeholder": {
+    "message": "Plain text or Base64 string..."
+  },
+  "base64OutputPlaceholder": {
+    "message": "Result..."
+  },
+  "b64UrlSafeLabel": {
+    "message": "Base64URL"
+  },
+  "btnEncode": {
+    "message": "Encode"
+  },
+  "btnDecode": {
+    "message": "Decode"
+  },
+  "btnSwap": {
+    "message": "Swap"
+  },
+  "base64Error": {
+    "message": "Invalid or malformed Base64 string."
+  },
+  "jwtTitle": {
+    "message": "JWT Decoder"
+  },
+  "jwtOfflineBadge": {
+    "message": "100% offline processing"
+  },
+  "jwtPlaceholder": {
+    "message": "Paste a JWT token (header.payload.signature)..."
+  },
+  "jwtDecodeBtn": {
+    "message": "Decode JWT"
+  },
+  "jwtHeaderLabel": {
+    "message": "Header"
+  },
+  "jwtPayloadLabel": {
+    "message": "Payload"
+  },
+  "jwtSignatureLabel": {
+    "message": "Signature present (not verified offline)"
+  },
+  "jwtValidStructure": {
+    "message": "JWT structure decoded offline"
+  },
+  "jwtExpired": {
+    "message": "Expired"
+  },
+  "jwtNotYetValid": {
+    "message": "Not valid yet (nbf)"
+  },
+  "jwtActive": {
+    "message": "Active"
+  },
+  "jwtNoExp": {
+    "message": "No exp/nbf"
+  },
+  "jwtAlgWarningNone": {
+    "message": "alg: none (unsigned)"
+  },
+  "jwtClaimIat": {
+    "message": "Issued (iat)"
+  },
+  "jwtClaimNbf": {
+    "message": "Not before (nbf)"
+  },
+  "jwtClaimExp": {
+    "message": "Expires (exp)"
+  },
+  "jwtErrorInvalid": {
+    "message": "Invalid JWT token: 3 dot-separated segments required."
+  },
+  "qrTitle": {
+    "message": "Instant QR Generator"
+  },
+  "qrInputPlaceholder": {
+    "message": "Enter a URL or text (defaults to current tab)..."
+  },
+  "qrUseCurrentTab": {
+    "message": "Use current tab"
+  },
+  "qrDownloadPng512": {
+    "message": "PNG 512px"
+  },
+  "qrDownloadSvg": {
+    "message": "SVG"
+  },
+  "qrCopyImage": {
+    "message": "Copy image"
+  },
+  "qrImageCopied": {
+    "message": "QR image copied"
+  },
+  "qrImageCopyFailed": {
+    "message": "Could not copy image."
+  },
+  "qrEmptyHint": {
+    "message": "Enter a URL or text to generate the QR code."
+  },
+  "qrErrorTooLong": {
+    "message": "Content exceeds maximum local QR code capacity."
+  },
+  "seoTitle": {
+    "message": "Quick Metadata (SEO & OpenGraph)"
+  },
+  "seoRefreshBtn": {
+    "message": "Refresh"
+  },
+  "seoCopyReport": {
+    "message": "Copy report"
+  },
+  "seoReportCopied": {
+    "message": "SEO report copied"
+  },
+  "seoFieldTitle": {
+    "message": "Title (30–60)"
+  },
+  "seoFieldDescription": {
+    "message": "Description (120–160)"
+  },
+  "seoFieldCanonical": {
+    "message": "Canonical"
+  },
+  "seoFieldRobots": {
+    "message": "Robots"
+  },
+  "seoFieldViewport": {
+    "message": "Viewport"
+  },
+  "seoFieldLangCharset": {
+    "message": "Lang / Charset"
+  },
+  "seoFieldH1": {
+    "message": "H1 Headings"
+  },
+  "seoFieldImagesAlt": {
+    "message": "Images & alt"
+  },
+  "seoFieldOgTitle": {
+    "message": "og:title"
+  },
+  "seoFieldOgDesc": {
+    "message": "og:description"
+  },
+  "seoFieldOgType": {
+    "message": "og:type"
+  },
+  "seoFieldOgUrl": {
+    "message": "og:url"
+  },
+  "seoFieldOgImage": {
+    "message": "og:image"
+  },
+  "seoFieldTwitterCard": {
+    "message": "twitter:card"
+  },
+  "seoFieldTwitterTitle": {
+    "message": "twitter:title"
+  },
+  "seoFieldTwitterDesc": {
+    "message": "twitter:description"
+  },
+  "seoFieldTwitterImage": {
+    "message": "twitter:image"
+  },
+  "seoImagesNone": {
+    "message": "No <img> tags"
+  },
+  "seoImagesOk": {
+    "message": "$1 img · All have alt"
+  },
+  "seoImagesMissing": {
+    "message": "$1 missing alt of $2 img"
+  },
+  "seoImagesEmptyNote": {
+    "message": " ($1 empty alt=\"\")"
+  },
+  "seoMissing": {
+    "message": "Not set"
+  },
+  "seoChars": {
+    "message": "$1 chars"
+  },
+  "netSummaryTitle": {
+    "message": "Network & Resources Summary"
+  },
+  "netResourcesCount": {
+    "message": "Resources"
+  },
+  "netTransferLabel": {
+    "message": "Transferred"
+  },
+  "netLoadLabel": {
+    "message": "Load / DOM"
+  },
+  "netCacheLabel": {
+    "message": "Cached"
+  },
+  "netFilterAll": {
+    "message": "All"
+  },
+  "netFilterFetch": {
+    "message": "Fetch / XHR"
+  },
+  "netFilterScript": {
+    "message": "Scripts"
+  },
+  "netFilterCss": {
+    "message": "CSS"
+  },
+  "netFilterImg": {
+    "message": "Images"
+  },
+  "netFilterOther": {
+    "message": "Other"
+  },
+  "netSearchPlaceholder": {
+    "message": "Filter by URL..."
+  },
+  "netResourcesEmpty": {
+    "message": "No recorded resources match the current filter."
+  },
+  "netLiveTitle": {
+    "message": "Live Monitor (fetch / XHR)"
+  },
+  "netLiveToggle": {
+    "message": "Capture traffic"
+  },
+  "netLiveStop": {
+    "message": "Stop capture"
+  },
+  "netStateIdle": {
+    "message": "Idle"
+  },
+  "netStateLive": {
+    "message": "Capturing"
+  },
+  "netLiveCopyJson": {
+    "message": "Copy JSON"
+  },
+  "netLiveEmpty": {
+    "message": "Enable capture to log live fetch and XHR calls (max 100)."
+  },
+  "netScopeNote": {
+    "message": "Local scope with minimal permissions (no debugger or <all_urls>): inspects Performance API and page fetch/XHR. Does not capture raw TCP packets or HttpOnly headers."
+  },
+  "appHeaderTitle": {
+    "message": "Application Inspector"
+  },
+  "appManifestTitle": {
+    "message": "Web App Manifest (PWA)"
+  },
+  "appValidateManifest": {
+    "message": "Validate Manifest"
+  },
+  "appManifestMissing": {
+    "message": "No <link rel=\"manifest\"> detected on this page."
+  },
+  "appManifestCrossOrigin": {
+    "message": "Manifest is cross-origin; skipped to preserve strict activeTab scope."
+  },
+  "appManifestError": {
+    "message": "Could not fetch or parse the manifest file."
+  },
+  "appManifestValid": {
+    "message": "Valid manifest"
+  },
+  "appManifestIssues": {
+    "message": "Manifest has warnings"
+  },
+  "appWebMcpTitle": {
+    "message": "WebMCP (navigator.modelContext)"
+  },
+  "appWebMcpSupported": {
+    "message": "API supported"
+  },
+  "appWebMcpUnsupported": {
+    "message": "API not exposed in this tab"
+  },
+  "appWebMcpDeclarative": {
+    "message": "Declarative forms (toolname)"
+  },
+  "appWebMcpNone": {
+    "message": "No WebMCP tools or declarative toolname forms detected."
+  },
+  "appStorageTitle": {
+    "message": "Storage, Cookies & Service Workers"
+  },
+  "appQuotaLabel": {
+    "message": "Usage / Quota"
+  },
+  "appTabLocal": {
+    "message": "localStorage"
+  },
+  "appTabSession": {
+    "message": "sessionStorage"
+  },
+  "appTabCookies": {
+    "message": "JS Cookies"
+  },
+  "appTabWorkers": {
+    "message": "IDB / Cache / SW"
+  },
+  "appStorageSearchPlaceholder": {
+    "message": "Filter keys or names..."
+  },
+  "appStorageEmpty": {
+    "message": "No entries in this section."
+  },
+  "appStorageDeleteBtn": {
+    "message": "Delete"
+  },
+  "appStorageConfirmDelete": {
+    "message": "Delete key \"$1\"?"
+  },
+  "appCookiesHttpOnlyNote": {
+    "message": "Shows JavaScript-accessible cookies only (excludes HttpOnly; no global cookies permission)."
+  },
+  "appIdbLabel": {
+    "message": "IndexedDB Databases"
+  },
+  "appCacheLabel": {
+    "message": "Cache Storage"
+  },
+  "appSwLabel": {
+    "message": "Service Workers"
+  },
+  "secTitle": {
+    "message": "Security Overview"
+  },
+  "secScoreLabel": {
+    "message": "Score"
+  },
+  "secAuditHeadersBtn": {
+    "message": "Audit HTTP Headers"
+  },
+  "secAuditingHeaders": {
+    "message": "Auditing..."
+  },
+  "secAuditHeadersFailed": {
+    "message": "Could not read HTTP headers (HEAD blocked or network error)."
+  },
+  "secCopyReport": {
+    "message": "Copy report"
+  },
+  "secReportCopied": {
+    "message": "Security report copied"
+  },
+  "secHeadersHint": {
+    "message": "Audits DOM, secure context, and JS storage keys with zero requests. Click \"Audit HTTP Headers\" to run a same-origin HEAD request."
+  },
+  "secCheckHttps": {
+    "message": "HTTPS & Secure Context"
+  },
+  "secCheckMixed": {
+    "message": "Mixed Content"
+  },
+  "secCheckCsp": {
+    "message": "Content Security Policy (CSP)"
+  },
+  "secCheckHsts": {
+    "message": "HSTS (Strict-Transport-Security)"
+  },
+  "secCheckClickjacking": {
+    "message": "Clickjacking Protection (XFO)"
+  },
+  "secCheckNosniff": {
+    "message": "X-Content-Type-Options"
+  },
+  "secCheckReferrer": {
+    "message": "Referrer-Policy"
+  },
+  "secCheckPermissions": {
+    "message": "Permissions-Policy"
+  },
+  "secCheckSri": {
+    "message": "Subresource Integrity (SRI)"
+  },
+  "secCheckIframes": {
+    "message": "Unsandboxed Iframes"
+  },
+  "secCheckTargetBlank": {
+    "message": "Unsafe target=\"_blank\" Links"
+  },
+  "secCheckForms": {
+    "message": "HTTP Forms & Passwords"
+  },
+  "secCheckSensitive": {
+    "message": "Sensitive Keys in JS Storage"
+  },
+  "secStatusGood": {
+    "message": "OK"
+  },
+  "secStatusWarn": {
+    "message": "Warn"
+  },
+  "secStatusBad": {
+    "message": "Risk"
+  },
+  "secStatusInfo": {
+    "message": "Info"
+  },
+  "secMixedListTitle": {
+    "message": "Insecure HTTP resources detected:"
+  },
+  "secSensitiveNote": {
+    "message": "Key names only (values are never exported in reports)."
+  },
+  "copiedToast": {
+    "message": "Copied!"
+  },
+  "copyFailed": {
+    "message": "Could not copy to clipboard."
+  },
+  "paypalDonate": {
+    "message": "Donate via PayPal"
+  },
+  "githubRepo": {
+    "message": "GitHub (MIT)"
+  },
+  "suiteLabel": {
+    "message": "Chala Suite:"
+  },
+  "privacyNote": {
+    "message": "Local execution · Zero telemetry"
+  }
+}

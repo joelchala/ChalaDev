@@ -1,8 +1,11 @@
 /**
  * Generador de codigos QR 100% local (JavaScript puro, ISO/IEC 18004).
- * Soporta codificacion Byte UTF-8 para versiones 1 a 15 con correccion de errores Nivel M,
- * evaluacion de las 8 mascaras estandar y renderizado nitido en <canvas>.
+ * Soporta codificacion Byte UTF-8 para versiones 1 a 40 con correccion de errores Nivel M,
+ * evaluacion de las 8 mascaras estandar, zona de silencio de 4 modulos y exportacion PNG/SVG.
  */
+
+export const QR_MAX_VERSION = 40;
+export const QR_QUIET_ZONE_MODULES = 4;
 
 const ALIGNMENT_POSITIONS = {
   1: [],
@@ -19,7 +22,32 @@ const ALIGNMENT_POSITIONS = {
   12: [6, 32, 58],
   13: [6, 34, 62],
   14: [6, 26, 46, 66],
-  15: [6, 26, 48, 70]
+  15: [6, 26, 48, 70],
+  16: [6, 26, 50, 74],
+  17: [6, 30, 54, 78],
+  18: [6, 30, 56, 82],
+  19: [6, 30, 58, 86],
+  20: [6, 34, 62, 90],
+  21: [6, 28, 50, 72, 94],
+  22: [6, 26, 50, 74, 98],
+  23: [6, 30, 54, 78, 102],
+  24: [6, 28, 54, 80, 106],
+  25: [6, 32, 58, 84, 110],
+  26: [6, 30, 58, 86, 114],
+  27: [6, 34, 62, 90, 118],
+  28: [6, 26, 50, 74, 98, 122],
+  29: [6, 30, 54, 78, 102, 126],
+  30: [6, 26, 52, 78, 104, 130],
+  31: [6, 30, 56, 82, 108, 134],
+  32: [6, 34, 60, 86, 112, 138],
+  33: [6, 30, 58, 86, 114, 142],
+  34: [6, 34, 62, 90, 118, 146],
+  35: [6, 30, 54, 78, 102, 126, 150],
+  36: [6, 24, 50, 76, 102, 128, 154],
+  37: [6, 28, 54, 80, 106, 132, 158],
+  38: [6, 32, 58, 84, 110, 136, 162],
+  39: [6, 26, 54, 82, 110, 138, 166],
+  40: [6, 30, 58, 86, 114, 142, 170]
 };
 
 // Tabla de bloques Reed-Solomon para Nivel M (ISO/IEC 18004):
@@ -39,7 +67,32 @@ const RS_BLOCKS_M = {
   12: [22, 6, 36, 2, 37],
   13: [22, 8, 37, 1, 38],
   14: [24, 4, 40, 5, 41],
-  15: [24, 5, 41, 5, 42]
+  15: [24, 5, 41, 5, 42],
+  16: [28, 7, 45, 3, 46],
+  17: [28, 10, 46, 1, 47],
+  18: [26, 9, 43, 4, 44],
+  19: [26, 3, 44, 11, 45],
+  20: [26, 3, 41, 13, 42],
+  21: [26, 17, 42, 0, 0],
+  22: [28, 17, 46, 0, 0],
+  23: [28, 4, 47, 14, 48],
+  24: [28, 6, 45, 14, 46],
+  25: [28, 8, 47, 13, 48],
+  26: [28, 19, 46, 4, 47],
+  27: [28, 22, 45, 3, 46],
+  28: [28, 3, 45, 23, 46],
+  29: [28, 21, 45, 7, 46],
+  30: [28, 19, 47, 10, 48],
+  31: [28, 2, 46, 29, 47],
+  32: [28, 10, 46, 23, 47],
+  33: [28, 14, 46, 21, 47],
+  34: [28, 14, 46, 23, 47],
+  35: [28, 12, 47, 26, 48],
+  36: [28, 6, 47, 34, 48],
+  37: [28, 29, 46, 14, 47],
+  38: [28, 13, 46, 32, 47],
+  39: [28, 40, 47, 7, 48],
+  40: [28, 18, 47, 31, 48]
 };
 
 const GF_EXP = new Uint8Array(512);
@@ -100,8 +153,22 @@ function getTotalDataCodewords(version) {
   return g1B * g1D + g2B * g2D;
 }
 
+export function getQrCapacityInfo(version) {
+  const [ecCount, g1B, g1D, g2B, g2D] = RS_BLOCKS_M[version];
+  const dataCodewords = g1B * g1D + g2B * g2D;
+  const totalCodewords = g1B * (g1D + ecCount) + g2B * (g2D + ecCount);
+  const headerBytes = version <= 9 ? 2 : 3;
+  return {
+    version,
+    size: version * 4 + 17,
+    dataCodewords,
+    totalCodewords,
+    maxUtf8Bytes: dataCodewords - headerBytes
+  };
+}
+
 function selectVersion(byteLength) {
-  for (let v = 1; v <= 15; v += 1) {
+  for (let v = 1; v <= QR_MAX_VERSION; v += 1) {
     const countBits = v <= 9 ? 8 : 16;
     const headerBits = 4 + countBits;
     const neededBits = headerBits + byteLength * 8;
@@ -308,12 +375,15 @@ function setupFunctionPatterns(version) {
     isFunction[i][6] = 1;
   }
 
-  // Patrones de alineacion
+  // Patrones de alineacion (omitiendo unicamente las 3 esquinas ocupadas por finder patterns)
   const alignPos = ALIGNMENT_POSITIONS[version] || [];
-  for (const r of alignPos) {
-    for (const c of alignPos) {
-      if (isFunction[r][c]) continue;
-      drawAlignmentPattern(modules, isFunction, r, c);
+  const lastIdx = alignPos.length - 1;
+  for (let i = 0; i < alignPos.length; i += 1) {
+    for (let j = 0; j < alignPos.length; j += 1) {
+      if ((i === 0 && j === 0) || (i === 0 && j === lastIdx) || (i === lastIdx && j === 0)) {
+        continue;
+      }
+      drawAlignmentPattern(modules, isFunction, alignPos[i], alignPos[j]);
     }
   }
 
@@ -321,7 +391,7 @@ function setupFunctionPatterns(version) {
   modules[4 * version + 9][8] = 1;
   isFunction[4 * version + 9][8] = 1;
 
-  // Reservar espacio de formato para que no se coloquen datos ahi
+  // Reservar espacio de formato y version para que no se coloquen datos ahi
   drawFormatBits(modules, isFunction, 0);
   drawVersionBits(modules, isFunction, version);
 
@@ -509,10 +579,10 @@ export function encodeQRMatrix(text) {
 }
 
 /**
- * Dibuja el codigo QR en un elemento <canvas> con zona de silencio (quiet zone) nitida.
+ * Dibuja el codigo QR en un elemento <canvas> con zona de silencio de 4 modulos (ISO/IEC 18004).
  * @param {HTMLCanvasElement} canvas
  * @param {string} text
- * @param {{ targetSize?: number, marginModules?: number, darkColor?: string, lightColor?: string }} [options]
+ * @param {{ targetSize?: number, marginModules?: number, exactSize?: boolean, darkColor?: string, lightColor?: string }} [options]
  */
 export function renderQRCode(canvas, text, options = {}) {
   const encoded = encodeQRMatrix(text);
@@ -522,15 +592,19 @@ export function renderQRCode(canvas, text, options = {}) {
 
   const {
     targetSize = 240,
-    marginModules = 3,
+    marginModules = QR_QUIET_ZONE_MODULES,
+    exactSize = false,
     darkColor = "#0F172A",
     lightColor = "#FFFFFF"
   } = options;
 
   const { size, matrix } = encoded;
   const totalModules = size + marginModules * 2;
-  const modulePx = Math.max(2, Math.floor(targetSize / totalModules));
-  const canvasPx = totalModules * modulePx;
+  const modulePx = Math.max(1, Math.floor(targetSize / totalModules));
+  const canvasPx = exactSize ? targetSize : totalModules * modulePx;
+  const offsetPx = exactSize
+    ? Math.floor((canvasPx - size * modulePx) / 2)
+    : marginModules * modulePx;
 
   canvas.width = canvasPx;
   canvas.height = canvasPx;
@@ -545,8 +619,8 @@ export function renderQRCode(canvas, text, options = {}) {
     for (let c = 0; c < size; c += 1) {
       if (matrix[r][c] === 1) {
         ctx.fillRect(
-          (c + marginModules) * modulePx,
-          (r + marginModules) * modulePx,
+          offsetPx + c * modulePx,
+          offsetPx + r * modulePx,
           modulePx,
           modulePx
         );
@@ -554,5 +628,58 @@ export function renderQRCode(canvas, text, options = {}) {
     }
   }
 
-  return encoded;
+  return { ...encoded, canvasPx, totalModules, marginModules };
+}
+
+/**
+ * Genera una cadena SVG vectorial limpia y autonoma con zona de silencio de 4 modulos.
+ * @param {string} text
+ * @param {{ sizePx?: number, marginModules?: number, darkColor?: string, lightColor?: string }} [options]
+ */
+export function encodeQRSvg(text, options = {}) {
+  const encoded = encodeQRMatrix(text);
+  if (!encoded.ok) {
+    return encoded;
+  }
+
+  const {
+    sizePx = 512,
+    marginModules = QR_QUIET_ZONE_MODULES,
+    darkColor = "#0F172A",
+    lightColor = "#FFFFFF"
+  } = options;
+
+  const { size, matrix, version } = encoded;
+  const totalModules = size + marginModules * 2;
+  const pathParts = [];
+
+  for (let r = 0; r < size; r += 1) {
+    let runStart = -1;
+    for (let c = 0; c <= size; c += 1) {
+      const isDark = c < size && matrix[r][c] === 1;
+      if (isDark && runStart === -1) {
+        runStart = c;
+      } else if (!isDark && runStart !== -1) {
+        const runLen = c - runStart;
+        pathParts.push(`M${runStart + marginModules} ${r + marginModules}h${runLen}v1h-${runLen}z`);
+        runStart = -1;
+      }
+    }
+  }
+
+  const svg = [
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${totalModules} ${totalModules}" width="${sizePx}" height="${sizePx}" shape-rendering="crispEdges">`,
+    `<rect width="${totalModules}" height="${totalModules}" fill="${lightColor}"/>`,
+    `<path fill="${darkColor}" d="${pathParts.join("")}"/>`,
+    "</svg>"
+  ].join("");
+
+  return {
+    ok: true,
+    version,
+    size,
+    totalModules,
+    marginModules,
+    svg
+  };
 }

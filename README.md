@@ -1,5 +1,5 @@
 <h1 align="center">
-<img src="icons/icon.svg" height="56" width="56" alt="ChalaDev Logo">
+<img src="src/icons/icon.svg" height="56" width="56" alt="ChalaDev Logo">
 <br>
 ChalaDev
 </h1>
@@ -11,8 +11,8 @@ Suite de utilidades rápidas para desarrolladores web y diseñadores UI/UX en Ch
 
 <p align="center">
   <a href="PRIVACY.md">Política de Privacidad</a> ·
-  <a href="#instalaci%C3%B3n-local-chrome-y-edge">Instalación</a> ·
-  <a href="#m%C3%B3dulos-incluidos">Módulos</a> ·
+  <a href="#instalación">Instalación</a> ·
+  <a href="#módulos-incluidos">Módulos</a> ·
   <a href="https://www.paypal.com/ncp/payment/9ZPGVEYNK89M6">Donar vía PayPal</a>
 </p>
 
@@ -23,8 +23,8 @@ Suite de utilidades rápidas para desarrolladores web y diseñadores UI/UX en Ch
 **ChalaDev** es una extensión **Manifest V3** integrada directamente en el **Panel Lateral (`chrome.sidePanel`)** de Google Chrome y Microsoft Edge. Te permite interactuar con la página web a la izquierda mientras utilizas herramientas visuales, formateadores y utilidades SEO a la derecha, sin enviar jamás un solo byte a servidores externos.
 
 ### Principios de Arquitectura y Privacidad
-- **Cero código remoto:** Todo el código JavaScript (incluido el generador de códigos QR ISO/IEC 18004 en `lib/qrcode.js`) se ejecuta localmente cumpliendo las políticas CSP de Chrome Web Store y Edge Add-ons (`script-src 'self'; object-src 'self'`).
-- **Permisos mínimos indispensables:** Solo solicita `"sidePanel"`, `"activeTab"`, `"scripting"` y `"storage"`. No solicita `<all_urls>` ni permisos invasivos.
+- **Cero código remoto:** Todo el código JavaScript (incluido el generador de códigos QR ISO/IEC 18004 en `src/lib/qrcode.js`) se ejecuta localmente cumpliendo las políticas CSP de Chrome Web Store y Edge Add-ons (`script-src 'self'; object-src 'self'`).
+- **Permisos mínimos indispensables:** Solo solicita `"sidePanel"`, `"activeTab"`, `"scripting"` y `"storage"`. No solicita `<all_urls>` ni `host_permissions`.
 - **Manejo limpio de páginas internas:** Detecta automáticamente URLs restringidas como `chrome://`, `edge://`, `about:` o tiendas de extensiones mostrando un aviso amigable sin arrojar errores en consola.
 - **Bilingüe (`_locales`):** Español (`es`, predeterminado) e Inglés (`en`).
 
@@ -33,21 +33,32 @@ Suite de utilidades rápidas para desarrolladores web y diseñadores UI/UX en Ch
 ## Módulos incluidos
 
 ### 1. Inspector Visual y Color (Página Activa)
-- **Cuentagotas de Pantalla (`window.EyeDropper()`):** Captura cualquier píxel en pantalla y muestra al instante su valor en **HEX**, **RGB** y **HSL**, con copia en un clic y un historial persistente local de los últimos **12 colores** capturados.
-- **Inspector de Tipografía y Caja (Hover DOM):** Interruptor bajo demanda que inyecta `content/inspector.js` sobre la pestaña activa para resaltar elementos con borde `#06B6D4` (y fijarlos al hacer clic con `#10B981`, o salir con `Esc`), mostrando en tiempo real:
-  - Etiqueta HTML y selector resumido
-  - Dimensiones (`px`)
+- **Cuentagotas, Selector Manual y Contraste WCAG:** Captura cualquier píxel en pantalla (`window.EyeDropper()`), ingresa colores manualmente (`#HEX`, `rgb()`, `hsl()`, `oklch()`, `color(srgb ...)`) o con selector nativo, copia **HEX**, **RGB** y **HSL** en un clic, guarda un historial local de los últimos **12 colores** y comprueba el ratio de contraste **WCAG 2.1 (AA / AAA)**.
+- **Inspector de Tipografía y Caja (Hover DOM):** Interruptor bajo demanda que inyecta `src/content/inspector.js` sobre la pestaña activa (compatible con **Shadow DOM abierto** y **CSS Color 4**), con resaltado `#06B6D4` / `#10B981`, desactivación con `Esc` o al cerrar el Side Panel, mostrando:
+  - Etiqueta HTML, dimensiones (`px`), `display`, `border-radius`, `padding` y `margin`
   - `font-family`, `font-size`, `font-weight`, `line-height`
-  - Colores computados (`color` y `background-color` en HEX y RGB)
+  - Colores computados (con copia de **HEX limpio**, envío al historial y verificación directa de contraste WCAG)
 
 ### 2. Formateador y Decodificador Local
-- **JSON Formatter / Validator:** Valida, formatea con indentación de 2 espacios o minifica JSON al instante, indicando línea y columna exactas ante errores de sintaxis.
-- **Conversor Base64 (UTF-8):** Codifica y decodifica cadenas UTF-8 (compatible con Base64 y Base64Url) e intercambia entrada/salida en un clic.
-- **Decodificador JWT (100% Offline):** Decodifica localmente el **Header** y **Payload** de tokens JWT e inspecciona claims temporales (`exp`, `iat`, `nbf`) indicando si el token está vigente o expirado, sin enviar tokens a ningún servidor.
+- **JSON Formatter / Validator:** Valida, formatea con indentación de 2 espacios o minifica JSON al instante, indicando línea y columna exactas incluso cuando el motor JS no las incluye en el mensaje de error.
+- **Conversor Base64 / Base64URL (UTF-8):** Codifica y decodifica cadenas UTF-8 con opción **Base64URL** e intercambio de entrada/salida en un clic.
+- **Decodificador JWT (100% Offline):** Auto-decodifica al pegar el **Header** y **Payload**, muestra insignia de algoritmo (`alg`, con alerta si es `none`), valida `exp` y `nbf`, y renderiza fechas legibles para `iat`, `nbf` y `exp` sin enviar tokens a ningún servidor.
 
 ### 3. QR y Vista Rápida SEO
-- **Generador QR Local (`lib/qrcode.js`):** Genera códigos QR limpios de forma automática para la URL de la pestaña activa (ideal para probar `localhost` o entornos de desarrollo en tu móvil) o cualquier texto/URL personalizado, con descarga directa en **PNG**.
-- **Metadatos Rápidos:** Inspecciona de un vistazo **Título**, **Description** (con contador de caracteres), **Canonical** y etiquetas **OpenGraph** básicas (`og:title`, `og:description`, `og:type`, `og:url`, `og:image`).
+- **Generador QR Local (`src/lib/qrcode.js`):** Soporta versiones **1 a 40** (hasta 2,331 bytes UTF-8) con zona de silencio ISO/IEC 18004 de **4 módulos**, vista previa de la pestaña activa, descarga en **PNG 512px**, **SVG** vectorial y copia directa de imagen al portapapeles.
+- **Metadatos Rápidos SEO:** Inspecciona de un vistazo **Título** (semáforo 30–60), **Description** (semáforo 120–160), **Canonical**, **Robots**, **Viewport**, **Lang / Charset**, conteo de **H1**, imágenes sin `alt`, **OpenGraph** y **Twitter Cards** (solo texto, sin cargar imágenes remotas) y permite copiar el reporte SEO completo.
+
+### 4. Red (Recursos y Monitor en Vivo)
+- **Resumen de Performance API:** Lista recursos cargados con tipo (`fetch`, `script`, `css`, `img`), estado, protocolo, duración, caché y tamaño transferido, con filtros por tipo y búsqueda.
+- **Monitor en Vivo (`fetch` / `XHR`):** Interruptor bajo demanda (`src/content/net-monitor-{main,bridge}.js`) que registra llamadas en tiempo real (máx. 100, con vista previa de texto/JSON y exportación JSON), desactivándose automáticamente al cerrar el Side Panel. Todo con permisos mínimos (sin `debugger`, sin `<all_urls>` ni captura TCP/Wireshark).
+
+### 5. Aplicación (Manifest, WebMCP, Storage y Workers)
+- **Web App Manifest (PWA):** Detecta `<link rel="manifest">` y valida bajo clic (same-origin) `name`, `start_url`, `display`, iconos 192/512 y `theme_color`.
+- **WebMCP:** Detecta soporte de `navigator.modelContext`, herramientas registradas y formularios declarativos `form[toolname]`.
+- **Storage y Service Workers:** Inspecciona uso/cuota (`navigator.storage.estimate()`), `localStorage`, `sessionStorage` (copia y eliminación segura), cookies accesibles a JS, bases `IndexedDB`, `Cache Storage` y `Service Workers`.
+
+### 6. Seguridad (Security Overview)
+- **Auditoría Local y Cabeceras HTTP:** Evalúa HTTPS / `isSecureContext`, contenido mixto, CSP, SRI en scripts externos, `iframe[sandbox]`, enlaces `target="_blank"`, formularios en HTTP y nombres de claves sensibles en JS Storage (sin exportar valores), además de auditoría `HEAD` same-origin bajo clic para HSTS, XFO, `nosniff`, Referrer-Policy y Permissions-Policy con puntaje `0–100` y reporte copiable.
 
 ---
 
@@ -55,62 +66,81 @@ Suite de utilidades rápidas para desarrolladores web y diseñadores UI/UX en Ch
 
 ```text
 ChalaDev/
-├── _locales/
-│   ├── en/messages.json       # Traducciones al inglés
-│   └── es/messages.json       # Traducciones al español (predeterminado)
-├── content/
-│   └── inspector.js           # Overlay DOM ligero inyectado bajo demanda (activeTab)
-├── icons/
-│   ├── icon.svg               # Logotipo vectorial "Escudo Cibernético"
-│   └── icon{16,32,48,128}.png # Iconos PNG generados localmente
-├── lib/
-│   ├── qrcode.js              # Generador QR puro en JS (sin dependencias remotas)
-│   └── utils.js               # Conversión de colores, JSON, Base64 UTF-8 y JWT
-├── scripts/
-│   └── generate-icons.mjs     # Generador PNG nativo en Node.js
-├── sidepanel/
-│   ├── index.html             # Interfaz compacta de 3 pestañas + pie de comunidad
-│   ├── styles.css             # Sistema visual Escudo Cibernético (#0F172A / #10B981 / #06B6D4)
-│   └── app.js                 # Lógica de UI, EyeDropper, almacenamiento y mensajería
+├── .github/workflows/
+│   └── build.yml                  # Compilación y release automático en GitHub Actions
+├── dist/
+│   ├── README.md                  # Instrucciones de instalación desde dist/
+│   ├── version                    # Versión de compilación (1.0.0)
+│   └── build/                     # Salida generada por tools/make-mv3.mjs (gitignored)
+├── docs/
+│   ├── index.html                 # Página de documentación local
+│   └── README.md
+├── src/
+│   ├── _locales/                  # Traducciones es (predeterminado) y en
+│   ├── content/
+│   │   ├── inspector.js           # Overlay DOM bajo demanda (Shadow DOM + CSS Color 4)
+│   │   ├── net-monitor-bridge.js  # Puente ISOLATED para monitor fetch/XHR
+│   │   └── net-monitor-main.js    # Monitor fetch/XHR en mundo MAIN bajo demanda
+│   ├── icons/                     # Logotipo SVG e iconos PNG (16, 32, 48, 128)
+│   ├── lib/
+│   │   ├── qrcode.js              # Generador QR puro en JS (v1–40, PNG y SVG)
+│   │   └── utils.js               # Colores + WCAG, JSON, Base64URL, JWT y SEO
+│   ├── sidepanel/                 # Interfaz del Panel Lateral (index.html, styles.css, app.js)
+│   ├── background.js              # Service worker MV3 (sidePanel + activeTab + lifecycle)
+│   ├── config.js                  # Constantes, URLs restringidas y PAYPAL_DONATE_URL
+│   └── manifest.json              # Manifiesto V3 con permisos mínimos
+├── store/
+│   ├── ficha-tienda.md            # Ficha lista para Microsoft Edge Add-ons
+│   ├── ficha-chrome-web-store.md  # Ficha lista para Chrome Web Store
+│   ├── logo-300x300.png           # Logo de tienda (300×300)
+│   ├── promo-440x280.png          # Mosaico promocional (440×280)
+│   ├── destacada-1400x560.png     # Banner destacado (1400×560)
+│   ├── captura-1-visual-color.png # Captura 1280×800
+│   ├── captura-2-json-jwt.png     # Captura 1280×800
+│   ├── captura-3-qr-seo.png       # Captura 1280×800
+│   ├── captura-4-red-app-seguridad.png # Captura 1280×800
+│   └── paquetes/                  # ZIPs generados para tiendas (gitignored)
 ├── tests/
-│   └── verify.mjs             # Verificación de sintaxis, manifest, PNGs y lógica pura
-├── background.js              # Service worker MV3 (sidePanel + puente activeTab)
-├── config.js                  # Constantes de marca, URLs restringidas y PAYPAL_DONATE_URL
-├── manifest.json              # Manifiesto V3 con permisos mínimos
-├── LICENSE                    # Licencia MIT
-├── PRIVACY.md                 # Declaración de privacidad 100% local
+│   └── verify.mjs                 # Suite de verificación automatizada
+├── tools/
+│   ├── generate-icons.mjs         # Generador PNG nativo en Node.js
+│   ├── make-mv3.mjs               # Empaquetador Chromium/Edge (.zip y unpacked)
+│   ├── make-mv3.sh                # Wrapper Bash del empaquetador
+│   └── make-clean.sh              # Limpieza de dist/build
+├── LICENSE.txt                    # Licencia MIT
+├── PRIVACY.md                     # Política de privacidad bilingüe (ES + EN)
+├── package.json                   # Scripts build, icons y test (Node >=22)
 └── README.md
 ```
 
 ---
 
-## Instalación local (Chrome y Edge)
+## Instalación
 
-1. Clona o descarga este repositorio:
-   ```bash
-   git clone https://github.com/joelchala/ChalaDev.git
-   ```
+1. Descarga el paquete desde [Releases](https://github.com/joelchala/ChalaDev/releases) o compila localmente (ver abajo).
 2. Abre `chrome://extensions` en Google Chrome o `edge://extensions` en Microsoft Edge.
 3. Activa el **Modo de desarrollador** (*Developer mode*).
-4. Haz clic en **Cargar descomprimida** (*Load unpacked*) y selecciona la carpeta raíz `ChalaDev`.
-5. Haz clic en el icono de **ChalaDev** en la barra de herramientas para abrir el Panel Lateral sobre cualquier página web.
+4. Haz clic en **Cargar descomprimida** (*Load unpacked*) y selecciona `dist/build/ChalaDev.chromium/` (o `src/`).
+5. Haz clic en el icono de **ChalaDev** en la barra de herramientas para abrir el Panel Lateral.
 
 ---
 
-## Verificación y pruebas
+## Compilar / Empaquetar y Pruebas
 
-Requisitos: Node.js 20 o superior (sin dependencias externas de `npm`).
+Requisitos: Node.js 22 o superior (sin dependencias externas de `npm`).
 
 ```bash
+npm run build
 npm test
 ```
 
-El script `tests/verify.mjs` valida:
-- Sintaxis JavaScript (`node --check`) en todos los archivos `.js` y `.mjs`.
-- Estructura del `manifest.json`, permisos mínimos permitidos (`sidePanel`, `activeTab`, `scripting`, `storage`) y CSP estricta.
-- Cabeceras e integridad dimensional de los iconos PNG (`16`, `32`, `48`, `128`).
-- Paridad completa de claves entre `_locales/es/messages.json` y `_locales/en/messages.json`.
-- Pruebas unitarias de conversión de colores, JSON Formatter/Validator, Base64 UTF-8, decodificador JWT offline, detección de URLs internas (`chrome://`, `edge://`) y generación de matrices QR (incluyendo recuento exacto de módulos en versiones 1–15).
+También puedes usar el script Bash:
+
+```bash
+bash tools/make-mv3.sh
+```
+
+La compilación genera `dist/build/ChalaDev.chromium/` y los paquetes listos para tienda en `store/paquetes/ChalaDev_1.0.0.chromium.zip` y `store/paquetes/ChalaDev_1.0.0.edge.zip`.
 
 ---
 
@@ -123,6 +153,6 @@ El script `tests/verify.mjs` valida:
 - **ChalaDev** — Utilidades rápidas locales en el Panel Lateral
 
 Si esta herramienta te ahorra tiempo en tu flujo de desarrollo o diseño, puedes apoyar su mantenimiento continuo:
-- **[Donar vía PayPal](https://www.paypal.com/ncp/payment/9ZPGVEYNK89M6)** (configurable en `PAYPAL_DONATE_URL` dentro de `config.js`)
+- **[Donar vía PayPal](https://www.paypal.com/ncp/payment/9ZPGVEYNK89M6)** (configurable en `PAYPAL_DONATE_URL` dentro de `src/config.js`)
 
-Licenciado bajo la licencia [MIT](LICENSE).
+Licenciado bajo la licencia [MIT](LICENSE.txt).
