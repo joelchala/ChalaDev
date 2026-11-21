@@ -84,7 +84,7 @@ ChalaDev/
 │   ├── icons/                     # Logotipo SVG e iconos PNG (16, 32, 48, 128)
 │   ├── lib/
 │   │   ├── qrcode.js              # Generador QR puro en JS (v1–40, PNG y SVG)
-│   │   └── utils.js               # Colores + WCAG, JSON, Base64URL, JWT y SEO
+│   │   └── utils.js               # Colores + WCAG, JSON, Base64URL, JWT, SEO, Red, Manifest y Seguridad
 │   ├── sidepanel/                 # Interfaz del Panel Lateral (index.html, styles.css, app.js)
 │   ├── background.js              # Service worker MV3 (sidePanel + activeTab + lifecycle)
 │   ├── config.js                  # Constantes, URLs restringidas y PAYPAL_DONATE_URL
@@ -141,6 +141,15 @@ bash tools/make-mv3.sh
 ```
 
 La compilación genera `dist/build/ChalaDev.chromium/` y los paquetes listos para tienda en `store/paquetes/ChalaDev_1.0.0.chromium.zip` y `store/paquetes/ChalaDev_1.0.0.edge.zip`.
+
+---
+
+## Versión y Compatibilidad (`v1.0.0`)
+
+- **Versión actual:** `1.0.0` (Manifest V3).
+- **Navegadores soportados:** **Google Chrome >= 116** y **Microsoft Edge >= 116** (requerido por `chrome.sidePanel.open()` a nivel de ventana y ejecución en `world: "MAIN"` bajo `activeTab`).
+- **Entorno de compilación y pruebas:** **Node.js >= 22** (actualizado desde `>= 20`, sin dependencias externas).
+- **Detección progresiva de APIs:** `window.EyeDropper()` y **WebMCP** (`navigator.modelContext`) se detectan de forma segura en tiempo de ejecución para mantener compatibilidad sin errores en navegadores o contextos donde no estén expuestos.
 
 ---
 
