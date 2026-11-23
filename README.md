@@ -10,11 +10,15 @@ Suite de utilidades rápidas para desarrolladores web y diseñadores UI/UX en Ch
 </p>
 
 <p align="center">
+  <a href="https://microsoftedge.microsoft.com/addons/detail/chaladev-%E2%80%94-utilidades-web/bnebgppenkhencmjledfhbphbdmneogi">Microsoft Edge Add-ons</a> ·
+  <a href="https://chaladev.site/">Portal Suite Chala</a> ·
   <a href="PRIVACY.md">Política de Privacidad</a> ·
   <a href="#instalación">Instalación</a> ·
   <a href="#módulos-incluidos">Módulos</a> ·
   <a href="https://www.paypal.com/ncp/payment/9ZPGVEYNK89M6">Donar vía PayPal</a>
 </p>
+
+- **Sitio oficial:** [chaladev.site](https://chaladev.site/) · **Contacto:** [info@chaladev.site](mailto:info@chaladev.site)
 
 ---
 
@@ -117,6 +121,10 @@ ChalaDev/
 
 ## Instalación
 
+- **Tienda oficial (Microsoft Edge Add-ons):** [ChalaDev — Utilidades web](https://microsoftedge.microsoft.com/addons/detail/chaladev-%E2%80%94-utilidades-web/bnebgppenkhencmjledfhbphbdmneogi)
+
+Para instalación manual o desarrollo:
+
 1. Descarga el paquete desde [Releases](https://github.com/joelchala/ChalaDev/releases) o compila localmente (ver abajo).
 2. Abre `chrome://extensions` en Google Chrome o `edge://extensions` en Microsoft Edge.
 3. Activa el **Modo de desarrollador** (*Developer mode*).
@@ -155,7 +163,7 @@ La compilación genera `dist/build/ChalaDev.chromium/` y los paquetes listos par
 
 ## Suite Chala y Donaciones
 
-**ChalaDev** forma parte de la **Suite Chala** de herramientas de código abierto enfocadas en privacidad y productividad:
+**ChalaDev** forma parte de la **Suite Chala** ([chaladev.site](https://chaladev.site/) · [info@chaladev.site](mailto:info@chaladev.site)) de herramientas de código abierto enfocadas en privacidad y productividad:
 - **[Chalablock](https://github.com/joelchala/Chalablock)** — Bloqueador de anuncios y rastreadores ligero (Manifest V3)
 - **[ChalaCookiesEdit](https://github.com/joelchala/ChalaCookiesEdit)** — Editor de cookies local con soporte CHIPS, incógnito, bloqueo e inspector JWT
 - **[ChalaDev](https://github.com/joelchala/ChalaDev)** — Utilidades rápidas locales en el Panel Lateral
