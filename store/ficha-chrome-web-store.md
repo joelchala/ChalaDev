@@ -1,6 +1,6 @@
 # ChalaDev: ficha para Chrome Web Store
 
-Material listo para pegar en <https://chrome.google.com/webstore/devconsole> (cuenta de desarrollador `joelchala07@gmail.com`). Los textos largos de descripción son los mismos de [ficha-tienda.md](ficha-tienda.md), sección 5.
+Material listo para pegar en <https://chrome.google.com/webstore/devconsole> (cuenta de desarrollador `info@chaladev.site`). Los textos largos de descripción son los mismos de [ficha-tienda.md](ficha-tienda.md), sección 5.
 
 ## 0. Antes de empezar
 
@@ -24,8 +24,8 @@ Subir `store/paquetes/ChalaDev_1.0.0.chromium.zip` (también disponible al crear
 | Small promo tile (440×280) | `promo-440x280.png` |
 | Marquee promo tile (1400×560) | `destacada-1400x560.png` (opcional) |
 | Official URL | Dejar en «None» |
-| Homepage URL | `https://github.com/joelchala/ChalaDev` |
-| Support URL | `https://github.com/joelchala/ChalaDev/issues` |
+| Homepage URL | `https://chaladev.site` (o `https://github.com/joelchala/ChalaDev`) |
+| Support URL | `https://chaladev.site/#privacidad` (o `https://github.com/joelchala/ChalaDev/issues`) |
 | Mature content | No |
 
 ## 3. Privacy practices (prácticas de privacidad)
