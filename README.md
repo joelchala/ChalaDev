@@ -156,10 +156,13 @@ La compilación genera `dist/build/ChalaDev.chromium/` y los paquetes listos par
 ## Suite Chala y Donaciones
 
 **ChalaDev** forma parte de la **Suite Chala** de herramientas de código abierto enfocadas en privacidad y productividad:
-- **Chalablock** — Bloqueador ligero enfocado en privacidad
-- **ChalaVPN** — Conectividad segura sin rastreo
-- **ChalaTabs** — Gestor de espacios de trabajo y ahorro de memoria RAM
-- **ChalaDev** — Utilidades rápidas locales en el Panel Lateral
+- **[Chalablock](https://github.com/joelchala/Chalablock)** — Bloqueador de anuncios y rastreadores ligero (Manifest V3)
+- **[ChalaCookiesEdit](https://github.com/joelchala/ChalaCookiesEdit)** — Editor de cookies local con soporte CHIPS, incógnito, bloqueo e inspector JWT
+- **[ChalaDev](https://github.com/joelchala/ChalaDev)** — Utilidades rápidas locales en el Panel Lateral
+- **[ChalaReader](https://github.com/joelchala/ChalaReader)** — Modo lectura limpio con Shadow DOM, temas visuales, Markdown, PDF y guardado offline
+- **[ChalaScrape](https://github.com/joelchala/ChalaScrape)** — Extractor visual de tablas, listas y tarjetas web a Excel (`.xlsx`) y CSV
+- **[ChalaTabs](https://github.com/joelchala/ChalaTabs)** — Gestor de espacios de trabajo y ahorro de memoria RAM
+- **[ChalaVPN](https://github.com/joelchala/ChalaVPN)** — Conectividad segura mediante proxy HTTPS/SOCKS5 con protección WebRTC
 
 Si esta herramienta te ahorra tiempo en tu flujo de desarrollo o diseño, puedes apoyar su mantenimiento continuo:
 - **[Donar vía PayPal](https://www.paypal.com/ncp/payment/9ZPGVEYNK89M6)** (configurable en `PAYPAL_DONATE_URL` dentro de `src/config.js`)
