@@ -5,7 +5,7 @@ ChalaDev
 </h1>
 
 <p align="center">
-Suite de utilidades rápidas para desarrolladores web y diseñadores UI/UX en Chrome y Microsoft Edge.<br>
+Suite de utilidades rápidas para desarrolladores web y diseñadores UI/UX en Chrome, Microsoft Edge y Mozilla Firefox.<br>
 <strong>100% gratuita · 100% local · Manifest V3 · Código abierto (MIT)</strong>
 </p>
 
@@ -19,12 +19,13 @@ Suite de utilidades rápidas para desarrolladores web y diseñadores UI/UX en Ch
 </p>
 
 - **Sitio oficial:** [chaladev.site](https://chaladev.site/) · **Contacto:** [info@chaladev.site](mailto:info@chaladev.site)
+- **Tiendas:** [Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/chaladev-%E2%80%94-utilidades-web/bnebgppenkhencmjledfhbphbdmneogi) · Mozilla Firefox Add-ons / AMO *(paquete `.firefox.zip` validado con 0 errores, en cola de publicación)* · Chrome Web Store *(pendiente de cupo)*
 
 ---
 
 ## Qué es ChalaDev
 
-**ChalaDev** es una extensión **Manifest V3** integrada directamente en el **Panel Lateral (`chrome.sidePanel`)** de Google Chrome y Microsoft Edge. Te permite interactuar con la página web a la izquierda mientras utilizas herramientas visuales, formateadores y utilidades SEO a la derecha, sin enviar jamás un solo byte a servidores externos.
+**ChalaDev** es una extensión **Manifest V3** integrada directamente en el **Panel Lateral (`chrome.sidePanel` en Chrome/Edge y `sidebar_action` en Mozilla Firefox >= 128)**. Te permite interactuar con la página web a la izquierda mientras utilizas herramientas visuales, formateadores y utilidades SEO a la derecha, sin enviar jamás un solo byte a servidores externos.
 
 ### Principios de Arquitectura y Privacidad
 - **Cero código remoto:** Todo el código JavaScript (incluido el generador de códigos QR ISO/IEC 18004 en `src/lib/qrcode.js`) se ejecuta localmente cumpliendo las políticas CSP de Chrome Web Store y Edge Add-ons (`script-src 'self'; object-src 'self'`).
@@ -108,7 +109,7 @@ ChalaDev/
 │   └── verify.mjs                 # Suite de verificación automatizada
 ├── tools/
 │   ├── generate-icons.mjs         # Generador PNG nativo en Node.js
-│   ├── make-mv3.mjs               # Empaquetador Chromium/Edge (.zip y unpacked)
+│   ├── make-mv3.mjs               # Empaquetador Chromium/Edge/Firefox (.zip y unpacked)
 │   ├── make-mv3.sh                # Wrapper Bash del empaquetador
 │   └── make-clean.sh              # Limpieza de dist/build
 ├── LICENSE.txt                    # Licencia MIT
@@ -122,6 +123,7 @@ ChalaDev/
 ## Instalación
 
 - **Tienda oficial (Microsoft Edge Add-ons):** [ChalaDev — Utilidades web](https://microsoftedge.microsoft.com/addons/detail/chaladev-%E2%80%94-utilidades-web/bnebgppenkhencmjledfhbphbdmneogi)
+- **Mozilla Firefox (AMO):** paquete `store/paquetes/ChalaDev_1.0.0.firefox.zip` (`chaladev@chaladev.site`) validado en AMO con 0 errores, en cola de publicación; carga temporal en `about:debugging#/runtime/this-firefox`
 
 Para instalación manual o desarrollo:
 
