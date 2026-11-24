@@ -148,14 +148,14 @@ También puedes usar el script Bash:
 bash tools/make-mv3.sh
 ```
 
-La compilación genera `dist/build/ChalaDev.chromium/` y los paquetes listos para tienda en `store/paquetes/ChalaDev_1.0.0.chromium.zip` y `store/paquetes/ChalaDev_1.0.0.edge.zip`.
+La compilación genera `dist/build/ChalaDev.chromium/` y los paquetes listos para tienda en `store/paquetes/ChalaDev_1.0.0.chromium.zip`, `store/paquetes/ChalaDev_1.0.0.edge.zip` y `store/paquetes/ChalaDev_1.0.0.firefox.zip` (`sidebar_action` dinámico para Firefox AMO sin duplicar `src/`).
 
 ---
 
 ## Versión y Compatibilidad (`v1.0.0`)
 
 - **Versión actual:** `1.0.0` (Manifest V3).
-- **Navegadores soportados:** **Google Chrome >= 116** y **Microsoft Edge >= 116** (requerido por `chrome.sidePanel.open()` a nivel de ventana y ejecución en `world: "MAIN"` bajo `activeTab`).
+- **Navegadores soportados:** **Google Chrome >= 116**, **Microsoft Edge >= 116** (`chrome.sidePanel.open()` y `world: "MAIN"`) y **Mozilla Firefox >= 128** (`sidebar_action`, `background.scripts` y `chaladev@chaladev.site` en `.firefox.zip`).
 - **Entorno de compilación y pruebas:** **Node.js >= 22** (actualizado desde `>= 20`, sin dependencias externas).
 - **Detección progresiva de APIs:** `window.EyeDropper()` y **WebMCP** (`navigator.modelContext`) se detectan de forma segura en tiempo de ejecución para mantener compatibilidad sin errores en navegadores o contextos donde no estén expuestos.
 

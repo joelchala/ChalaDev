@@ -922,7 +922,7 @@ export function registerBackgroundListeners() {
 
   if (chrome.action?.onClicked) {
     chrome.action.onClicked.addListener((tab) => {
-      // Llamar sidePanel.open() sincronamente (sin await previo) para conservar el gesto de usuario
+      // Llamar sidePanel.open() o sidebarAction.open() sincronamente para conservar el gesto de usuario
       if (chrome.sidePanel?.open && typeof tab?.windowId === "number") {
         Promise.resolve(chrome.sidePanel.open({ windowId: tab.windowId }))
           .catch(() => {})
@@ -930,7 +930,17 @@ export function registerBackgroundListeners() {
             notifyPanelTabUpdated(tab?.id ?? null);
           });
       } else {
-        notifyPanelTabUpdated(tab?.id ?? null);
+        const firefoxSidebarOpen =
+          globalThis.browser?.sidebarAction?.open || chrome.sidebarAction?.open;
+        if (typeof firefoxSidebarOpen === "function") {
+          Promise.resolve(firefoxSidebarOpen())
+            .catch(() => {})
+            .finally(() => {
+              notifyPanelTabUpdated(tab?.id ?? null);
+            });
+        } else {
+          notifyPanelTabUpdated(tab?.id ?? null);
+        }
       }
     });
   }
@@ -1006,7 +1016,11 @@ export function registerBackgroundListeners() {
   });
 }
 
-if (typeof chrome !== "undefined" && chrome.runtime && chrome.sidePanel) {
+if (
+  typeof chrome !== "undefined" &&
+  chrome.runtime &&
+  (chrome.sidePanel || globalThis.browser?.sidebarAction || chrome.sidebarAction)
+) {
   configureSidePanelBehavior();
   registerBackgroundListeners();
 }

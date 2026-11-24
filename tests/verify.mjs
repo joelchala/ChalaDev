@@ -36,6 +36,7 @@ import {
   encodeQRSvg
 } from "../src/lib/qrcode.js";
 import { configureSidePanelBehavior, registerBackgroundListeners } from "../src/background.js";
+import { extractZipEntry } from "../tools/make-mv3.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -255,8 +256,27 @@ async function main() {
 
     const chromiumZip = path.join(ROOT, "store", "paquetes", `ChalaDev_${targetVersion}.chromium.zip`);
     const edgeZip = path.join(ROOT, "store", "paquetes", `ChalaDev_${targetVersion}.edge.zip`);
+    const firefoxZip = path.join(ROOT, "store", "paquetes", `ChalaDev_${targetVersion}.firefox.zip`);
     assertValidZipPackage(chromiumZip);
     assertValidZipPackage(edgeZip);
+    assertValidZipPackage(firefoxZip);
+
+    const ffManifestBuf = extractZipEntry(fs.readFileSync(firefoxZip), "manifest.json");
+    assert.ok(ffManifestBuf, "Missing manifest.json inside Firefox ZIP");
+    const ffManifest = JSON.parse(ffManifestBuf.toString("utf8"));
+    assert.equal(ffManifest.manifest_version, 3);
+    assert.equal(ffManifest.version, targetVersion);
+    assert.equal(ffManifest.browser_specific_settings?.gecko?.id, "chaladev@chaladev.site");
+    assert.equal(ffManifest.browser_specific_settings?.gecko?.strict_min_version, "128.0");
+    assert.deepEqual(ffManifest.browser_specific_settings?.gecko?.data_collection_permissions, {
+      required: ["none"]
+    });
+    assert.deepEqual(ffManifest.background?.scripts, ["background.js"]);
+    assert.equal(ffManifest.background?.service_worker, undefined);
+    assert.equal(ffManifest.sidebar_action?.default_panel, "sidepanel/index.html");
+    assert.equal(ffManifest.side_panel, undefined);
+    assert.equal(ffManifest.permissions?.includes("sidePanel"), false);
+    assert.equal(ffManifest.minimum_chrome_version, undefined);
 
     assert.ok(fs.existsSync(path.join(ROOT, "store", "ficha-tienda.md")), "Missing store/ficha-tienda.md");
     assert.ok(
