@@ -19,7 +19,7 @@ Suite de utilidades rápidas para desarrolladores web y diseñadores UI/UX en Ch
 </p>
 
 - **Sitio oficial:** [chaladev.site](https://chaladev.site/) · **Contacto:** [info@chaladev.site](mailto:info@chaladev.site)
-- **Tiendas:** [Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/chaladev-%E2%80%94-utilidades-web/bnebgppenkhencmjledfhbphbdmneogi) · Mozilla Firefox Add-ons / AMO *(paquete `.firefox.zip` validado con 0 errores, en cola de publicación)* · Chrome Web Store *(pendiente de cupo)*
+- **Tiendas:** [Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/chaladev-%E2%80%94-utilidades-web/bnebgppenkhencmjledfhbphbdmneogi) · Mozilla Firefox Add-ons / AMO (`chaladev`, *en revisión*) · Chrome Web Store *(pendiente de cupo)*
 
 ---
 
@@ -123,7 +123,7 @@ ChalaDev/
 ## Instalación
 
 - **Tienda oficial (Microsoft Edge Add-ons):** [ChalaDev — Utilidades web](https://microsoftedge.microsoft.com/addons/detail/chaladev-%E2%80%94-utilidades-web/bnebgppenkhencmjledfhbphbdmneogi)
-- **Mozilla Firefox (AMO):** paquete `store/paquetes/ChalaDev_1.0.0.firefox.zip` (`chaladev@chaladev.site`) validado en AMO con 0 errores, en cola de publicación; carga temporal en `about:debugging#/runtime/this-firefox`
+- **Mozilla Firefox (AMO):** envío registrado en revisión (`chaladev`, ID `3140440`, `chaladev@chaladev.site`); paquete `store/paquetes/ChalaDev_1.0.0.firefox.zip` también cargable de forma temporal en `about:debugging#/runtime/this-firefox`
 
 Para instalación manual o desarrollo:
 
