@@ -5,7 +5,7 @@ ChalaDev
 </h1>
 
 <p align="center">
-Suite de utilidades rápidas para desarrolladores web y diseñadores UI/UX en Chrome, Microsoft Edge y Mozilla Firefox.<br>
+Suite de utilidades rápidas para desarrolladores web y diseñadores UI/UX en Chrome, Microsoft Edge, Opera y Mozilla Firefox.<br>
 <strong>100% gratuita · 100% local · Manifest V3 · Código abierto (MIT)</strong>
 </p>
 
@@ -19,7 +19,7 @@ Suite de utilidades rápidas para desarrolladores web y diseñadores UI/UX en Ch
 </p>
 
 - **Sitio oficial:** [chaladev.site](https://chaladev.site/) · **Contacto:** [info@chaladev.site](mailto:info@chaladev.site)
-- **Tiendas:** [Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/chaladev-%E2%80%94-utilidades-web/bnebgppenkhencmjledfhbphbdmneogi) · Mozilla Firefox Add-ons / AMO (`chaladev`, *en revisión*) · Chrome Web Store *(pendiente de cupo)*
+- **Tiendas:** [Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/chaladev-%E2%80%94-utilidades-web/bnebgppenkhencmjledfhbphbdmneogi) · Mozilla Firefox Add-ons / AMO (`chaladev`, *en revisión*) · [Opera Add-ons](https://addons.opera.com/developer/) *(en preparación)* · Chrome Web Store *(pendiente de cupo)*
 
 ---
 
@@ -123,6 +123,7 @@ ChalaDev/
 ## Instalación
 
 - **Tienda oficial (Microsoft Edge Add-ons):** [ChalaDev — Utilidades web](https://microsoftedge.microsoft.com/addons/detail/chaladev-%E2%80%94-utilidades-web/bnebgppenkhencmjledfhbphbdmneogi)
+- **Opera Add-ons:** [Complementos de Opera](https://addons.opera.com/developer/) *(en preparación; compatible con `store/paquetes/ChalaDev_1.0.0.chromium.zip`)*
 - **Mozilla Firefox (AMO):** envío registrado en revisión (`chaladev`, ID `3140440`, `chaladev@chaladev.site`); paquete `store/paquetes/ChalaDev_1.0.0.firefox.zip` también cargable de forma temporal en `about:debugging#/runtime/this-firefox`
 
 Para instalación manual o desarrollo:
@@ -157,7 +158,7 @@ La compilación genera `dist/build/ChalaDev.chromium/` y los paquetes listos par
 ## Versión y Compatibilidad (`v1.0.0`)
 
 - **Versión actual:** `1.0.0` (Manifest V3).
-- **Navegadores soportados:** **Google Chrome >= 116**, **Microsoft Edge >= 116** (`chrome.sidePanel.open()` y `world: "MAIN"`) y **Mozilla Firefox >= 128** (`sidebar_action`, `background.scripts` y `chaladev@chaladev.site` en `.firefox.zip`).
+- **Navegadores soportados:** **Google Chrome >= 116**, **Microsoft Edge >= 116**, **Opera >= 102** (`chrome.sidePanel.open()` y `world: "MAIN"`) y **Mozilla Firefox >= 128** (`sidebar_action`, `background.scripts` y `chaladev@chaladev.site` en `.firefox.zip`).
 - **Entorno de compilación y pruebas:** **Node.js >= 22** (actualizado desde `>= 20`, sin dependencias externas).
 - **Detección progresiva de APIs:** `window.EyeDropper()` y **WebMCP** (`navigator.modelContext`) se detectan de forma segura en tiempo de ejecución para mantener compatibilidad sin errores en navegadores o contextos donde no estén expuestos.
 
@@ -172,7 +173,8 @@ La compilación genera `dist/build/ChalaDev.chromium/` y los paquetes listos par
 - **[ChalaReader](https://github.com/joelchala/ChalaReader)** — Modo lectura limpio con Shadow DOM, temas visuales, Markdown, PDF y guardado offline
 - **[ChalaScrape](https://github.com/joelchala/ChalaScrape)** — Extractor visual de tablas, listas y tarjetas web a Excel (`.xlsx`) y CSV
 - **[ChalaTabs](https://github.com/joelchala/ChalaTabs)** — Gestor de espacios de trabajo y ahorro de memoria RAM
-- **[ChalaVPN](https://github.com/joelchala/ChalaVPN)** — Conectividad segura mediante proxy HTTPS/SOCKS5 con protección WebRTC
+- **[ChalaVoice](https://github.com/joelchala/ChalaVoice)** — Lector en voz alta 100% local con Popup, Mini Barra Flotante, Modo Inspector y lector de libros (`.epub`, `.md`, `.txt`)
+- **[ChalaVPN](https://github.com/joelchala/ChalaVPN)** — Conectividad segura mediante proxy PAC con rotación automática y protección WebRTC
 
 Si esta herramienta te ahorra tiempo en tu flujo de desarrollo o diseño, puedes apoyar su mantenimiento continuo:
 - **[Donar vía PayPal](https://www.paypal.com/ncp/payment/9ZPGVEYNK89M6)** (configurable en `PAYPAL_DONATE_URL` dentro de `src/config.js`)
